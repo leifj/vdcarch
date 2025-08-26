@@ -40,12 +40,12 @@ jobs:
         restore-keys: i-d-
 
     - name: "Build Drafts"
-      uses: martinthomson/i-d-template@v1m
+      uses: martinthomson/i-d-template@v1
       with:
         token: ${{ github.token }}
 
     - name: "Upload to Datatracker"
-      uses: martinthomson/i-d-template@v1m
+      uses: martinthomson/i-d-template@v1
       with:
         make: upload
       env:
@@ -54,4 +54,5 @@ jobs:
     - name: "Archive Submitted Drafts"
       uses: actions/upload-artifact@v4
       with:
+        name: published
         path: "versioned/draft-*-[0-9][0-9].*"

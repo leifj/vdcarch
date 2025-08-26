@@ -41,12 +41,12 @@ jobs:
         restore-keys: i-d-
 
     - name: "Build Drafts"
-      uses: martinthomson/i-d-template@v1m
+      uses: martinthomson/i-d-template@v1
       with:
         token: ${{ github.token }}
 
     - name: "Update GitHub Pages"
-      uses: martinthomson/i-d-template@v1m
+      uses: martinthomson/i-d-template@v1
       if: ${{ github.event_name == 'push' }}
       with:
         make: gh-pages
@@ -55,6 +55,7 @@ jobs:
     - name: "Archive Built Drafts"
       uses: actions/upload-artifact@v4
       with:
+        name: drafts
         path: |
           draft-*.html
           draft-*.txt
