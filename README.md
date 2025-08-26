@@ -1,17 +1,17 @@
-# A reference architecture for direct presentation credential flows
+# A reference architecture for verifiable digital credentials
 
-This is the working area for the individual Internet-Draft, "A reference architecture for direct presentation credential flows".
+This is the working area for the individual Internet-Draft, "A reference architecture for verifiable digital credentials".
 
-* [Editor's Copy](https://leifj.github.io/wallet-refarch/#go.draft-johansson-direct-presentation-arch.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-johansson-direct-presentation-arch)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-johansson-direct-presentation-arch)
-* [Compare Editor's Copy to Individual Draft](https://leifj.github.io/wallet-refarch/#go.draft-johansson-direct-presentation-arch.diff)
+* [Editor's Copy](https://leifj.github.io/vdcarch/#go.draft-ietf-spice-vcdarch.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-spice-vcdarch)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-ietf-spice-vcdarch)
+* [Compare Editor's Copy to Individual Draft](https://leifj.github.io/draft-ietf-spice-vcdarch/#go.draft-ietf-spice-vcdarch.diff)
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/leifj/wallet-refarch/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/leifj/draft-ietf-spice-vcdarch/blob/main/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
