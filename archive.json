@@ -1,7 +1,7 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-01T00:02:45.983618+00:00",
-  "repo": "leifj/wallet-refarch",
+  "timestamp": "2025-08-28T00:32:32.114234+00:00",
+  "repo": "leifj/vdcarch",
   "labels": [
     {
       "name": "bug",
@@ -54,7 +54,7 @@
       "number": 1,
       "id": "I_kwDOKFiMhc5uj_O-",
       "title": "use the term \"claims\" instead of \"data\" to represent the \"stuff\" inside a credential",
-      "url": "https://github.com/leifj/wallet-refarch/issues/1",
+      "url": "https://github.com/leifj/vdcarch/issues/1",
       "state": "OPEN",
       "author": "leifj",
       "authorAssociation": "OWNER",
@@ -62,7 +62,135 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-08-17T12:41:52Z",
-      "updatedAt": "2023-08-17T12:41:52Z",
+      "updatedAt": "2025-08-26T14:25:03Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "timcappalli",
+          "authorAssociation": "COLLABORATOR",
+          "body": "NIST uses attribute bundles too",
+          "createdAt": "2025-08-26T14:25:03Z",
+          "updatedAt": "2025-08-26T14:25:03Z"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOKFiMhc7IBhX9",
+      "title": "Add credential manager top level definition",
+      "url": "https://github.com/leifj/vdcarch/issues/3",
+      "state": "OPEN",
+      "author": "timcappalli",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "timcappalli"
+      ],
+      "labels": [],
+      "body": "Credential manager as the top level, with wallets and password managers as examples in the definition.",
+      "createdAt": "2025-08-26T14:14:51Z",
+      "updatedAt": "2025-08-26T14:23:21Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOKFiMhc7IBkCv",
+      "title": "Add holder and holder binding definitions",
+      "url": "https://github.com/leifj/vdcarch/issues/4",
+      "state": "OPEN",
+      "author": "timcappalli",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "timcappalli"
+      ],
+      "labels": [],
+      "body": "Holder may not be subject, but you are still the one authorizing release via the credential manager.\n\nIn NIST terms, it is often the person who is using the activation factor.",
+      "createdAt": "2025-08-26T14:17:40Z",
+      "updatedAt": "2025-08-26T14:38:25Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOKFiMhc7IBo2d",
+      "title": "Name all potential entities",
+      "url": "https://github.com/leifj/vdcarch/issues/5",
+      "state": "OPEN",
+      "author": "timcappalli",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Verifier\nVerifier service\nIssuer \nIssuer service\nCredential manager\nTrust service\nTrust framework\nHolder",
+      "createdAt": "2025-08-26T14:22:48Z",
+      "updatedAt": "2025-08-26T14:22:48Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOKFiMhc7IBpKM",
+      "title": "Name all flows / types",
+      "url": "https://github.com/leifj/vdcarch/issues/6",
+      "state": "OPEN",
+      "author": "timcappalli",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "E.g. direct presentation vs ???",
+      "createdAt": "2025-08-26T14:23:06Z",
+      "updatedAt": "2025-08-26T14:23:06Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOKFiMhc7IBtog",
+      "title": "Add VDC definition",
+      "url": "https://github.com/leifj/vdcarch/issues/7",
+      "state": "OPEN",
+      "author": "timcappalli",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "timcappalli"
+      ],
+      "labels": [],
+      "body": "Add a formal definition for verifiable digital credential",
+      "createdAt": "2025-08-26T14:27:23Z",
+      "updatedAt": "2025-08-26T14:27:23Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 8,
+      "id": "I_kwDOKFiMhc7IBxU4",
+      "title": "What if the subject is a pile of bricks?",
+      "url": "https://github.com/leifj/vdcarch/issues/8",
+      "state": "OPEN",
+      "author": "brentzundel",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Does 7.1 need to be re-worked to better apply to non-agent subjects?\nhttps://leifj.github.io/wallet-refarch/draft-johansson-direct-presentation-arch.html#section-7.1",
+      "createdAt": "2025-08-26T14:31:03Z",
+      "updatedAt": "2025-08-26T14:31:03Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOKFiMhc7IByvL",
+      "title": "Add W3C VC Profile",
+      "url": "https://github.com/leifj/vdcarch/issues/9",
+      "state": "OPEN",
+      "author": "brentzundel",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "brentzundel"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-08-26T14:32:35Z",
+      "updatedAt": "2025-08-26T14:32:39Z",
       "closedAt": null,
       "comments": []
     }
@@ -72,7 +200,7 @@
       "number": 2,
       "id": "PR_kwDOKFiMhc5qbbNz",
       "title": "Subject only presents login credentials to the *IdP*, right?",
-      "url": "https://github.com/leifj/wallet-refarch/pull/2",
+      "url": "https://github.com/leifj/vdcarch/pull/2",
       "state": "OPEN",
       "author": "bc-pi",
       "authorAssociation": "NONE",
@@ -81,7 +209,7 @@
       "body": "This document was mentioned in a recent IETF SPICE BoF meeting, which led me to read it. And I noticed this little issue. Hopefully that explains why I'm here ~7months after the last update to this repo's content. ",
       "createdAt": "2024-03-21T23:18:03Z",
       "updatedAt": "2024-03-21T23:30:16Z",
-      "baseRepository": "leifj/wallet-refarch",
+      "baseRepository": "leifj/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "729a4a4199f4402a3170d010b23f1648309f2b73",
       "headRepository": "bc-pi/wallet-refarch",
