@@ -105,13 +105,31 @@ This document defines a reference architecture for direct presentation flows of 
 
 # Introduction
 
-Digital credentials, which assert claims about individuals, organizations, or devices, have become essential tools in modern identity systems. Whether verifying an individual's qualifications, attesting to an enterprise's compliance, or authorizing an IoT device, these credentials rely on secure, efficient, and privacy-preserving mechanisms for their use.
+Verifiable digital credentials, which assert claims about individuals, organizations, or devices, have become essential tools in modern identity systems. Whether verifying an individual's qualifications, attesting to an enterprise's compliance, or authorizing an IoT device, these credentials rely on secure, efficient, and privacy-preserving mechanisms for their use.
 
 Traditional federated identity systems often rely on intermediaries or delegation, which can compromise user privacy or introduce inefficiencies. This document presents an architecture for direct presentation flows, where credentials are presented directly to verifiers without unnecessary intermediaries, empowering the data subject or their authorized representative to maintain control over the credential's use.
 
 At the heart of this architecture is the presentation mediator, an active software component responsible for facilitating secure and privacy-aware interactions. This mediator works in tandem with passive credential stores, verifiers, and issuers, creating a scalable and interoperable system that can adapt to diverse regulatory and operational environments.
 
-# Terminology
+# Terminology and Roles
+
+Credential manager:
+: An application, hardware device, or service which securely stores, organizes, manages, and enables presentation of credentials. Digital wallets, password managers, and passkeys managers are examples of credential managers.
+
+Issuer:
+: The entity that cryptographically signs a verifiable digital credential, thereby asserting its claims about a subject
+
+Issuer service:
+: The underlying platform or infrastructure service which enables an Issuer to issue a verifiable digital credential.
+
+Verifiable digital credential (VDC):
+: A cryptographically verifiable, tamper-evident assertions of claims about a subject, signed by an Issuer. VDCs are stored in a Credential Manager.
+
+Verifier:
+: The entity that cryptographically validates the authenticity and integrity of a verifiable digital credential. A verifier is typically, but not always, the relying party.
+
+Verifier service:
+: The underlying platform or infrastructure service which enables a Verifier to validate a verifiable digital credential.
 
 ## Naming the elephant in the room
 
