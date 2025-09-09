@@ -21,6 +21,20 @@ author:
      name: Leif Johansson
      organization: Sunet
      email: leifj@sunet.se
+     country: Sweden
+  -
+     ins: B. Zundel
+     name: Brent W. Zundel
+     organization: Tradeverifyd
+     email: brent.zundel@gmail.com
+     country: United States
+  -
+     ins: T. Cappalli
+     name: Tim Cappalli
+     organization: Okta
+     email: timcappalli@cloudauth.dev
+     country: United States
+  -
 
 informative:
   SAML: OASIS.sstc-core
