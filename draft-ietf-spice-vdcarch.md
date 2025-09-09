@@ -34,7 +34,6 @@ author:
      organization: Okta
      email: timcappalli@cloudauth.dev
      country: United States
-  -
 
 informative:
   SAML: OASIS.sstc-core
