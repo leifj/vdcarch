@@ -123,7 +123,7 @@ Issuer service:
 : The underlying platform or infrastructure service which enables an Issuer to issue a verifiable digital credential.
 
 Verifiable digital credential (VDC):
-: A cryptographically verifiable, tamper-evident assertions of claims about a subject, signed by an Issuer. VDCs are stored in a Credential Manager.
+: A cryptographically verifiable, tamper-evident assertion of claims about a subject, signed by an Issuer. VDCs are stored in a Credential Manager.
 
 Verifier:
 : The entity that cryptographically validates the authenticity and integrity of a verifiable digital credential. A verifier is typically, but not always, the relying party.
