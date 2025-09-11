@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-08-28T00:32:32.114234+00:00",
+  "timestamp": "2025-09-11T00:32:00.985403+00:00",
   "repo": "leifj/vdcarch",
   "labels": [
     {
@@ -58,11 +58,13 @@
       "state": "OPEN",
       "author": "leifj",
       "authorAssociation": "OWNER",
-      "assignees": [],
+      "assignees": [
+        "brentzundel"
+      ],
       "labels": [],
       "body": "",
       "createdAt": "2023-08-17T12:41:52Z",
-      "updatedAt": "2025-08-26T14:25:03Z",
+      "updatedAt": "2025-09-10T18:27:59Z",
       "closedAt": null,
       "comments": [
         {
@@ -71,6 +73,27 @@
           "body": "NIST uses attribute bundles too",
           "createdAt": "2025-08-26T14:25:03Z",
           "updatedAt": "2025-08-26T14:25:03Z"
+        },
+        {
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "body": "talked on 9/9 we're good with claims",
+          "createdAt": "2025-09-09T14:36:25Z",
+          "updatedAt": "2025-09-09T14:36:25Z"
+        },
+        {
+          "author": "leifj",
+          "authorAssociation": "OWNER",
+          "body": "should we check with NIST ? do they feel strongly about their attribute bundles?",
+          "createdAt": "2025-09-09T18:46:43Z",
+          "updatedAt": "2025-09-09T18:46:43Z"
+        },
+        {
+          "author": "timcappalli",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@billfshr @ryang03 any thoughts?",
+          "createdAt": "2025-09-10T18:27:59Z",
+          "updatedAt": "2025-09-10T18:27:59Z"
         }
       ]
     },
@@ -79,7 +102,7 @@
       "id": "I_kwDOKFiMhc7IBhX9",
       "title": "Add credential manager top level definition",
       "url": "https://github.com/leifj/vdcarch/issues/3",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "timcappalli",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -88,8 +111,8 @@
       "labels": [],
       "body": "Credential manager as the top level, with wallets and password managers as examples in the definition.",
       "createdAt": "2025-08-26T14:14:51Z",
-      "updatedAt": "2025-08-26T14:23:21Z",
-      "closedAt": null,
+      "updatedAt": "2025-09-09T14:15:05Z",
+      "closedAt": "2025-09-09T14:15:05Z",
       "comments": []
     },
     {
@@ -122,9 +145,24 @@
       "labels": [],
       "body": "Verifier\nVerifier service\nIssuer \nIssuer service\nCredential manager\nTrust service\nTrust framework\nHolder",
       "createdAt": "2025-08-26T14:22:48Z",
-      "updatedAt": "2025-08-26T14:22:48Z",
+      "updatedAt": "2025-09-09T14:30:45Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "timcappalli",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Authentic source (source data for issuance)",
+          "createdAt": "2025-09-09T14:23:23Z",
+          "updatedAt": "2025-09-09T14:23:23Z"
+        },
+        {
+          "author": "timcappalli",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Trust service: verifiers, issuers, credential managers, holders\n\nDefine up top and then explain differences later on in the spec.",
+          "createdAt": "2025-09-09T14:30:45Z",
+          "updatedAt": "2025-09-09T14:30:45Z"
+        }
+      ]
     },
     {
       "number": 6,
@@ -138,16 +176,24 @@
       "labels": [],
       "body": "E.g. direct presentation vs ???",
       "createdAt": "2025-08-26T14:23:06Z",
-      "updatedAt": "2025-08-26T14:23:06Z",
+      "updatedAt": "2025-09-09T14:33:16Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "timcappalli",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Holder direct presentation? ",
+          "createdAt": "2025-09-09T14:33:16Z",
+          "updatedAt": "2025-09-09T14:33:16Z"
+        }
+      ]
     },
     {
       "number": 7,
       "id": "I_kwDOKFiMhc7IBtog",
       "title": "Add VDC definition",
       "url": "https://github.com/leifj/vdcarch/issues/7",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "timcappalli",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -156,8 +202,8 @@
       "labels": [],
       "body": "Add a formal definition for verifiable digital credential",
       "createdAt": "2025-08-26T14:27:23Z",
-      "updatedAt": "2025-08-26T14:27:23Z",
-      "closedAt": null,
+      "updatedAt": "2025-09-09T14:14:39Z",
+      "closedAt": "2025-09-09T14:14:39Z",
       "comments": []
     },
     {
@@ -193,6 +239,38 @@
       "updatedAt": "2025-08-26T14:32:39Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 11,
+      "id": "I_kwDOKFiMhc7Kk9vT",
+      "title": "Proofs",
+      "url": "https://github.com/leifj/vdcarch/issues/11",
+      "state": "OPEN",
+      "author": "leifj",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "The architecture should talk about proofs at least in order to capture:\n\n1. device binding proofs\n2. zero knowledge proofs\n3. selective disclosure",
+      "createdAt": "2025-09-09T14:15:26Z",
+      "updatedAt": "2025-09-09T14:15:26Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOKFiMhc7Kk_lW",
+      "title": "Have some normative language",
+      "url": "https://github.com/leifj/vdcarch/issues/12",
+      "state": "OPEN",
+      "author": "leifj",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "The document should contain some normative language that serves to exclude \"regular\" message-passing architecture - eg email.",
+      "createdAt": "2025-09-09T14:17:26Z",
+      "updatedAt": "2025-09-09T14:17:26Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -201,25 +279,163 @@
       "id": "PR_kwDOKFiMhc5qbbNz",
       "title": "Subject only presents login credentials to the *IdP*, right?",
       "url": "https://github.com/leifj/vdcarch/pull/2",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "bc-pi",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "This document was mentioned in a recent IETF SPICE BoF meeting, which led me to read it. And I noticed this little issue. Hopefully that explains why I'm here ~7months after the last update to this repo's content. ",
       "createdAt": "2024-03-21T23:18:03Z",
-      "updatedAt": "2024-03-21T23:30:16Z",
+      "updatedAt": "2025-09-09T14:20:17Z",
       "baseRepository": "leifj/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "729a4a4199f4402a3170d010b23f1648309f2b73",
       "headRepository": "bc-pi/wallet-refarch",
       "headRefName": "patch-1",
       "headRefOid": "c341c114ce8b2dfbb11573adc9f7e155fd48511d",
+      "closedAt": "2025-09-09T14:20:17Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "leifj",
+          "authorAssociation": "OWNER",
+          "body": "We managed to change the filename before merging this but we backported like the good IETFer we are.",
+          "createdAt": "2025-09-09T14:20:17Z",
+          "updatedAt": "2025-09-09T14:20:17Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKFiMhc6-2KV1",
+          "commit": {
+            "abbreviatedOid": "c341c11"
+          },
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-09T14:18:09Z",
+          "updatedAt": "2025-09-09T14:18:09Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOKFiMhc6nfwzL",
+      "title": "Adds terminology",
+      "url": "https://github.com/leifj/vdcarch/pull/10",
+      "state": "MERGED",
+      "author": "timcappalli",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #7 #5 #3 \r\n\r\nFirst pass",
+      "createdAt": "2025-09-09T02:25:18Z",
+      "updatedAt": "2025-09-09T14:14:38Z",
+      "baseRepository": "leifj/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "fa963979ecb4f14d8f449d143e4ea067030d30a6",
+      "headRepository": "leifj/vdcarch",
+      "headRefName": "tc-terminology",
+      "headRefOid": "633985fec481c552563098d86f548a69b5463157",
+      "closedAt": "2025-09-09T14:14:38Z",
+      "mergedAt": "2025-09-09T14:14:38Z",
+      "mergedBy": "timcappalli",
+      "mergeCommit": {
+        "oid": "82b16824a4e673b64cf8c666cb5fcb38d57e34c0"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKFiMhc6-2BZ5",
+          "commit": {
+            "abbreviatedOid": "633985f"
+          },
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-09T14:09:58Z",
+          "updatedAt": "2025-09-09T14:09:58Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "PR_kwDOKFiMhc6noBET",
+      "title": "Add Brent and Tim",
+      "url": "https://github.com/leifj/vdcarch/pull/13",
+      "state": "OPEN",
+      "author": "timcappalli",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Adds Brent Z and Tim C as co-authors",
+      "createdAt": "2025-09-09T14:40:07Z",
+      "updatedAt": "2025-09-09T18:41:15Z",
+      "baseRepository": "leifj/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "3bb5010d1478eb30ad879e488a52a439af4ca98a",
+      "headRepository": "leifj/vdcarch",
+      "headRefName": "authors",
+      "headRefOid": "6b5ee80827e09dcbbcda3706a508ea10a06745cf",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKFiMhc6-5y34",
+          "commit": {
+            "abbreviatedOid": "6b5ee80"
+          },
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks Tim!",
+          "createdAt": "2025-09-09T18:41:15Z",
+          "updatedAt": "2025-09-09T18:41:15Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "id": "PR_kwDOKFiMhc6nsCHB",
+      "title": "Temporarily convert plantuml to ascii for tooling",
+      "url": "https://github.com/leifj/vdcarch/pull/14",
+      "state": "OPEN",
+      "author": "timcappalli",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Testing the build tools",
+      "createdAt": "2025-09-09T21:22:14Z",
+      "updatedAt": "2025-09-10T12:48:55Z",
+      "baseRepository": "leifj/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "2972429b0cb5415cb095c3835774ded5f5ed4eeb",
+      "headRepository": "leifj/vdcarch",
+      "headRefName": "plantuml2ascii",
+      "headRefOid": "11e5db3d17b7d29abb7f376b13c17f1cef057758",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "timcappalli",
+          "authorAssociation": "COLLABORATOR",
+          "body": "still broken \ud83d\ude21. This time it may be because of the size of the second diagram, but the error isn't clear.",
+          "createdAt": "2025-09-10T12:48:22Z",
+          "updatedAt": "2025-09-10T12:48:55Z"
+        }
+      ],
       "reviews": []
     }
   ]
