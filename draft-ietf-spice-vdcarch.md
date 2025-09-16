@@ -58,6 +58,25 @@ informative:
         name: The European Commission
     target: https://digital-strategy.ec.europa.eu/en/library/european-digital-identity-wallet-architecture-and-reference-framework
 normative:
+  VCDM2:
+    title: Verifiable Credentials Data Model v2.0
+    author:
+      -
+        ins: M. Sporny
+        name: Manu Sporny
+      -
+        ins: T. Thibodeau
+        name: Ted Thibodeau Jr
+      -
+        ins: I. Herman
+        name: Ivan Herman
+      -
+        ins: C. Cohen
+        name: Gabe Cohen
+      -
+        ins: M. B. Jones
+        name: Michael B. Jones
+    target: https://www.w3.org/TR/vc-data-model-2.0/
   RFC2119:
   SDJWT: I-D.ietf-oauth-selective-disclosure-jwt
   OIDC4VP:
@@ -70,8 +89,8 @@ normative:
         ins: T. Lodderstedt
         name: Torsten Lodderstedt
       -
-        ins: K. Yatsuda
-        name: Kristina Yatsuda
+        ins: K. Yasuda
+        name: Kristina Yasuda
       -
         ins: A. Lemmon
         name: Adam Lemmon
