@@ -23,6 +23,32 @@ author:
      email: leifj@sunet.se
 
 informative:
+  DIDKEY:
+    title: The did:key Method v0.7
+    author:
+      -
+        ins: D. Longley
+        name: Dave Longley
+      -
+        ins: D. Zagidulin
+        name: Dmitri Zagidulin
+      -
+        ins: M. Sporny
+        name: Manu Sporny
+    target: https://w3c-ccg.github.io/did-key-spec/
+  TSL:
+    title: Token Status List
+    author:
+      -
+        ins: T. Looker
+        name: Tobias Looker
+      -
+        ins: P. Bastian
+        name: Paul Bastian
+      -
+        ins: C. Bohrmann
+        name: Christian Bohrmann
+    target: https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/
   SAML: OASIS.sstc-core
   OPENIDC:
     title: OpenID Connect Core 1.0
@@ -77,6 +103,61 @@ normative:
         ins: M. B. Jones
         name: Michael B. Jones
     target: https://www.w3.org/TR/vc-data-model-2.0/
+  DID:
+    title: Decentralized Identifiers (DIDs) v1.0
+    author:
+      -
+        ins: M. Sporny
+        name: Manu Sporny
+      -
+        ins: A. Guy
+        name: Amy Guy
+      -
+        ins: M. Sabadello
+        name: Markus Sabadello
+      -
+        ins: D. Reed
+        name: Drummond Reed
+    target: https://www.w3.org/TR/did-1.0/
+  BSL:
+    title: Bitstring Status List v1.0
+    author:
+      -
+        ins: M. Sporny
+        name: Manu Sporny
+      -
+        ins: D. Longley
+        name: Dave Longley
+      -
+        ins: M. Prorock
+        name: Michael Prorock
+      -
+        ins: M. Alkhraishi
+        name: Mahmoud Alkhraishi
+    target: https://www.w3.org/TR/vc-bitstring-status-list/
+  CID:
+    title: Controlled Identifiers v1.0
+    author:
+      -
+        ins: M. Sporny
+        name: Manu Sporny
+      -
+        ins: M. B. Jones
+        name: Michael B. Jones
+    target: https://www.w3.org/TR/cid-1.0/
+  VCJOSE:
+    title: Securing Verifiable Credentials using JOSE and COSE
+    author:
+      -
+        ins: M. Prorock
+        name: Michael Prorock
+      -
+        ins: C. Cohen
+        name: Gabe Cohen
+      -
+        ins: M. B. Jones
+        name: Michael B. Jones
+    target: https://www.w3.org/TR/vc-jose-cose/
   RFC2119:
   SDJWT: I-D.ietf-oauth-selective-disclosure-jwt
   OIDC4VP:
@@ -117,7 +198,7 @@ normative:
 This document defines a reference architecture for direct presentation flows of digital credentials. The architecture introduces the concept of a presentation mediator as the active component responsible for managing, presenting, and selectively disclosing credentials while preserving a set of security and privacy promises that will also be defined.
 
 --- middle
-
+---
 # Conventions
 
 {::boilerplate bcp14-tagged}
@@ -203,7 +284,7 @@ Note that
 
 The limitation of this type of architecture and the need to evolve the architecture into direct presentation flow is primarily the second point: the IdP has information about every RP the Subject has ever used. Together with the use of linkable attributes at the RP this becomes a major privacy leak and a signifficant drawback of this type of architecture.
 
-The notion of "Self Sovreign Identity" (SSI) was first introduced in the blogpost [PathToSSI] by Christopher Allen. The concept initially relied heavily on the assumed dependency on blockchain technology. Recently there has been work to abstract the concepts of SSI away from a dependency on specificy technical solutions and desribe the key concepts of SSI independently of the use of blockchain.
+The notion of "Self Sovreign Identity" (SSI) was first introduced in the blogpost [PathToSSI] by Christopher Allen. The concept initially relied heavily on the assumed dependency on blockchain technology. Recently there has been work to abstract the concepts of SSI away from a dependency on specificy technical solutions and desribe the key concepts of SSI independently of the use of blockchain, such as the work in {{VCDM2}}.
 
 The purpose of this document is to create a reference architecture for some of the concepts involved in SSI in such a way that different implementations can be contrasted and compared. This document attempts to define a set of core normative requirement and also introduce the notion of direct presentation flow to denote the practice of using a mediator to allow the data subject control over the digital credential sharing flow.
 
@@ -329,7 +410,7 @@ A conformant implementation SHOULD provide a way for an issuer to revoke an issu
 
 # Profiles
 
-Several profiles of this reference architecture exist. We present two below.
+Several profiles of this reference architecture exist. We present some below.
 
 ## OpenID and SD-JWT
 
@@ -349,6 +430,30 @@ This minimal profile fulfills several of the requirements in the previous sectio
   * Non-linkability is provided by not reusing SD-JWTs from the issuer for multiple presentations. The mediator MAY obtain multiple copies of the same SD-JWT credentials from the mediator at the same time. These can then be used to generate separate presentation objects, never reusing the same SD-JWT credential for separate verifiers.
 
   This profile does not provide any solution for revocation and it leaves the question of how OpenID connect entities (issuers, verifiers and mediator) trust each other. There are also real scalability issues involved in how the digital signature keys are managed but as a minimal profile it illustrates the components necessary to make a direct presentation architecture work.
+
+## W3C Verifiable Credentials
+
+An expansion of the minimal profile above to include Verifiable Credentials:
+
+  1. Digital credentials follow {{VCDM2}}
+  2. These credentials are represented as SD-JWT objects {{SDJWT}} following {{VCJOSE}}
+  3. The issuer uses a {{CID}} to identify themselves and the keys they used to sign the digital credential.
+  4. The holder uses a {{DID}} such as {{DIDKEY}} to identify themselves.
+  5. The issuer uses {{TSL}} or {{BSL}} to communicate credential status changes.
+  6. An issuer implements the OP side of {{OIDC4VCI}}
+  7. A verifier implements RP side of {{OIDC4VP}}
+  8. A mediator implements the RP side of {{OIDC4VCI}} and the OP side of {{OIDC4VP}}
+
+A mediator conforming to this profile is also essentially an openid connect store-and-proove proxy with a user interface allowing the subject control over selective disclosure, with some additional benefits.
+
+This profile fulfills several of the requirements in the previous section:
+
+  * Selective disclosure is provided by the use of SD-JWT objects to represent credential and presentation objects.
+  * Issuer binding is provided by a combination of digital signatures on SD-JWTs and OpenID connect authentication between the mediator and issuer.
+  * Mediator binding is provided by the use of a DID for the holder.
+  * Non-linkability is provided by not reusing SD-JWTs from the issuer for multiple presentations. The mediator MAY obtain multiple copies of the same SD-JWT credentials from the mediator at the same time. These can then be used to generate separate presentation objects, never reusing the same SD-JWT credential for separate verifiers.
+  * Revocation and other changes to credential status are communicated via status credentials.
+  * It answers the question of trust by included a CID for issuer identification, which also addresses some of the scalability issues involved in managing the digital signature keys.
 
 ## Anoncreds
 
