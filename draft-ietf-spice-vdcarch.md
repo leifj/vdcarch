@@ -431,9 +431,9 @@ This minimal profile fulfills several of the requirements in the previous sectio
 
   This profile does not provide any solution for revocation and it leaves the question of how OpenID connect entities (issuers, verifiers and mediator) trust each other. There are also real scalability issues involved in how the digital signature keys are managed but as a minimal profile it illustrates the components necessary to make a direct presentation architecture work.
 
-## W3C Verifiable Credentials
+## Adding W3C Verifiable Credentials
 
-An expansion of the minimal profile above to include Verifiable Credentials:
+An expansion of the minimal profile above:
 
   1. Digital credentials follow {{VCDM2}}
   2. These credentials are represented as SD-JWT objects {{SDJWT}} following {{VCJOSE}}
