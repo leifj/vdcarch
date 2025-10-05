@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-14T00:34:25.222299+00:00",
+  "timestamp": "2025-10-05T00:35:25.704896+00:00",
   "repo": "leifj/vdcarch",
   "labels": [
     {
@@ -443,6 +443,32 @@
           "updatedAt": "2025-09-10T12:48:55Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 15,
+      "id": "PR_kwDOKFiMhc6r_-Cn",
+      "title": "Add VCDM profile",
+      "url": "https://github.com/leifj/vdcarch/pull/15",
+      "state": "OPEN",
+      "author": "brentzundel",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #9",
+      "createdAt": "2025-10-03T17:28:07Z",
+      "updatedAt": "2025-10-03T17:28:07Z",
+      "baseRepository": "leifj/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "5c296a87f9fc0ca7016027c2de660245b7e6b529",
+      "headRepository": "brentzundel/vdcarch",
+      "headRefName": "issue-9",
+      "headRefOid": "f5a92f54f89f65b85e01a7bdda283a8d18c4813b",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
