@@ -1,0 +1,8 @@
+~~~~ plantuml
+Subject -> RP: Initiate authentication flow
+RP -> IdP: Authentication request
+IdP --> Subject: Prompt for login credentials
+Subject --> IdP: Presents login credentials
+RP <-- IdP: Authentication response
+Subject <-- RP: Success!
+~~~~
