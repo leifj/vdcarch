@@ -57,6 +57,7 @@ informative:
         ins: COM
         name: The European Commission
     target: https://digital-strategy.ec.europa.eu/en/library/european-digital-identity-wallet-architecture-and-reference-framework
+
 normative:
   RFC2119:
   SDJWT: I-D.ietf-oauth-selective-disclosure-jwt
@@ -93,6 +94,7 @@ normative:
         name: Tobias Looker
     target: https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html
 ---
+
 --- abstract
 
 This document defines a reference architecture for direct presentation flows of digital credentials. The architecture introduces the concept of a presentation mediator as the active component responsible for managing, presenting, and selectively disclosing credentials while preserving a set of security and privacy promises that will also be defined.
@@ -148,6 +150,7 @@ To anchor this architecture, we define key terms:
 - A credential is a signed, structured document containing claims about a subject, issued by a trusted entity.
 - An attestation is a statement about a credential, often used to validate or certify its properties, such as its integrity or scope.
 - A presentation proof is a derived artifact that proves claims from a credential in a specific interaction with a verifier.
+
 
 # A Note on History
 
