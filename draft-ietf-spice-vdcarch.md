@@ -437,7 +437,6 @@ None so far
 --- back
 
 # Acknowledgments
-
 {:numbered="false"}
 
 Several people have contributed to this text through discussion. The author especially wishes to acknowledge the following individuals who have helped shape the thinking around trust and identity in general and this topic in particular.
