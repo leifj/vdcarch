@@ -409,8 +409,8 @@ Table of Contents
 5.5.  Credentials and Presentation Proofs
 
    A digital identity credential (abbreviated as 'credential' in this
-   document) is an object representing a set of data associated with a
-   subject.  The credential MAY contain data that uniquely identify a
+   document) is an object representing a set of claims associated with a
+   subject.  The credential MAY contain claims that uniquely identify a
    single subject.  A digital identity credential is typically
    cryptographically bound both to the issuer and to the mediator where
    it is stored.  A presentation proof (abbreviated as 'presentation' in
@@ -420,10 +420,10 @@ Table of Contents
    on data present in a single credential or in multiple or even on the
    result of computations based on a set of credentials.  A common
    example is a presentation proof that a subject is legally permitted
-   to take driving lessons.  This is a binary attribute the result of a
-   computation involving knowledge of both the biological age of the
-   subject as well as legal restrictions that apply to the jurisdiction
-   where the verifier is operating.
+   to take driving lessons.  This is a binary attribute which is the
+   result of a computation involving knowledge of both the biological
+   age of the subject as well as legal restrictions that apply to the
+   jurisdiction where the verifier is operating.
 
 5.6.  Issuer and Verifier
 
