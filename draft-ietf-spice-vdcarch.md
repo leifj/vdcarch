@@ -21,6 +21,19 @@ author:
      name: Leif Johansson
      organization: Sunet
      email: leifj@sunet.se
+     country: Sweden
+  -
+     ins: B. Zundel
+     name: Brent W. Zundel
+     organization: Tradeverifyd
+     email: brent.zundel@gmail.com
+     country: United States
+  -
+     ins: T. Cappalli
+     name: Tim Cappalli
+     organization: Okta
+     email: timcappalli@cloudauth.dev
+     country: United States
 
 informative:
   SAML: OASIS.sstc-core
@@ -57,6 +70,7 @@ informative:
         ins: COM
         name: The European Commission
     target: https://digital-strategy.ec.europa.eu/en/library/european-digital-identity-wallet-architecture-and-reference-framework
+
 normative:
   RFC2119:
   SDJWT: I-D.ietf-oauth-selective-disclosure-jwt
@@ -92,6 +106,7 @@ normative:
         ins: T. Looker
         name: Tobias Looker
     target: https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html
+---
 
 --- abstract
 
@@ -149,6 +164,7 @@ To anchor this architecture, we define key terms:
 - An attestation is a statement about a credential, often used to validate or certify its properties, such as its integrity or scope.
 - A presentation proof is a derived artifact that proves claims from a credential in a specific interaction with a verifier.
 
+
 # A Note on History
 
 The origins of the notion of digital identity goes back to the mid 1990s. Historically, Internet protocols were designed to deal with authentication and (sometimes) authorization, i.e. the question of what entity is accessing the protocol and what they are allowed to do. Digital identity can be thought of as a generalization of the concept of a user identifier in a protocol. Today we typically use the term data subject (abbreviated as 'subject' when there is no risk of confusion) to denote the actor whoese data is beeing acted upon by the protocol. Most internet protocols represent the data subject as a "user" identified by a single unique identifier. Identifier in use by Internet protocols were typically never designed to be unified - each security protocol typically designed a separate structure of identifiers.
@@ -167,14 +183,41 @@ Here is an illustration of how most federation protocols work. In this example t
 
 A brief illustration of the typical federation flow is useful. For the purpose of this illustration we are not considering the precise way in which protocol messages are transported between IdP and RP, nor do we consider how the Subject is represented in the interaction between the IdP and RP (eg if a user-agent is involved).
 
-~~~~ plantuml
+~~~ ascii-art
+     ┌───────┐                       ┌──┐                     ┌───┐
+     │Subject│                       │RP│                     │IdP│
+     └───┬───┘                       └─┬┘                     └─┬─┘
+         │Initiate authentication flow │                        │
+         │────────────────────────────>│                        │
+         │                             │                        │
+         │                             │Authentication request  │
+         │                             │───────────────────────>│
+         │                             │                        │
+         │            Prompt for login credentials              │
+         │<─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─│
+         │                             │                        │
+         │             Presents login credentials               │
+         │ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ >│
+         │                             │                        │
+         │                             │Authentication response │
+         │                             │<─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─│
+         │                             │                        │
+         │          Success!           │                        │
+         │<─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ │                        │
+     ┌───┴───┐                       ┌─┴┐                     ┌─┴─┐
+     │Subject│                       │RP│                     │IdP│
+     └───────┘                       └──┘                     └───┘
+~~~
+
+{::comment}
+// plant syntax
 Subject -> RP: Initiate authentication flow
 RP -> IdP: Authentication request
 IdP --> Subject: Prompt for login credentials
 Subject --> IdP: Presents login credentials
 RP <-- IdP: Authentication response
 Subject <-- RP: Success!
-~~~~
+{:/comment}
 
 Note that
 
@@ -234,7 +277,53 @@ Credential presentation flows describe how information from credentials are tran
 
 The basic direct presentation flows looks like this:
 
-~~~ plantuml
+~~~ ascii-art
+                    ┌───────┐                       ┌────────┐                                              ┌──────┐                            ┌────────┐           ┌─────────┐
+                    │Subject│                       │Mediator│                                              │Issuer│                            │Verifier│           │Presenter│
+                    └───┬───┘                       └────┬───┘                                              └───┬──┘                            └────┬───┘           └────┬────┘
+                        │                                │                                                      │                                    │                    │
+          ╔═══════════╤═╪════════════════════════════════╪══════════════════════════════════════════════════════╪════════════════════════════════════╪══╗                 │
+          ║ ISSUANCE  │ │                                │                                                      │                                    │  ║                 │
+          ╟───────────┘ <<initiate credential request>> ┌┴┐                                                     │                                    │  ║                 │
+          ║             │ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ > │ │                                                     │                                    │  ║                 │
+          ║             │                               │ │                                                     │                                    │  ║                 │
+          ║             │                               │ │                 request credential                 ┌┴┐                                   │  ║                 │
+          ║             │                               │ │  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─>│ │                                   │  ║                 │
+          ║             │                               │ │                                                    │ │                                   │  ║                 │
+          ║             │                               │ │                                                    │ │ ─ ─ ┐                             │  ║                 │
+          ║             │                               │ │                                                    │ │     | <<generate credential>>     │  ║                 │
+          ║             │                               │ │                                                    │ │ < ─ ┘                             │  ║                 │
+          ║             │                               └┬┘                                                    └┬┘                                   │  ║                 │
+          ║             │                                │                     credential                       │                                    │  ║                 │
+          ║             │                                │<─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─│                                    │  ║                 │
+          ╚═════════════╪════════════════════════════════╪══════════════════════════════════════════════════════╪════════════════════════════════════╪══╝                 │
+                        │                                │                                                      │                                    │                    │
+                        │                                │                                                      │                                    │                    │
+                        │                 ╔══════════════╪╤═════════════════════════════════════════════════════╪════════════════════════════════════╪════════════════════╪══════════════╗
+                        │                 ║ VERIFICATION  │                                                     │                                    │                    │              ║
+                        │                 ╟───────────────┘                                   request presentation                                   │                    │              ║
+                        │                 ║             │ │ <─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ │                    │              ║
+                        │                 ║             │ │                                                     │                                    │                    │              ║
+                        │                 ║             │ │                                      <<prompt to select credential(s)>>                  │                   ┌┴┐             ║
+                        │                 ║             │ │  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─>│ │             ║
+                        │                 ║             │ │                                                     │                                    │                   └┬┘             ║
+                        │                 ║             │ │                                     <<select claims from credential(s)>>                 │                    │              ║
+                        │                 ║             │ │ <─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─│              ║
+                        │                 ║             │ │                                                     │                                    │                    │              ║
+                        │                 ║             │ │ ─ ─ ┐                                               │                                    │                    │              ║
+                        │                 ║             │ │     | <<generate presentation proof selection>>     │                                    │                    │              ║
+                        │                 ║             │ │ < ─ ┘                                               │                                    │                    │              ║
+                        │                 ║             └┬┘                                                     │                                    │                    │              ║
+                        │                 ║              │                                    presentation proof│                                    │                    │              ║
+                        │                 ║              │ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─>│                    │              ║
+                        │                 ╚══════════════╪══════════════════════════════════════════════════════╪════════════════════════════════════╪════════════════════╪══════════════╝
+                    ┌───┴───┐                       ┌────┴───┐                                              ┌───┴──┐                            ┌────┴───┐           ┌────┴────┐
+                    │Subject│                       │Mediator│                                              │Issuer│                            │Verifier│           │Presenter│
+                    └───────┘                       └────────┘                                              └──────┘                            └────────┘           └─────────┘
+~~~
+
+{::comment}
+// plantuml source
 group issuance
    Subject --> Mediator: <<initiate credential request>>
    activate Mediator
@@ -246,7 +335,6 @@ group issuance
    deactivate Mediator
    deactivate Subject
 end
-
 group verification
    Verifier --> Mediator: request presentation
    activate Mediator
@@ -258,7 +346,7 @@ group verification
    return presentation proof
    deactivate Mediator
 end
-~~~
+{:/comment}
 
 The mediator (acting on behalf of the subject) requests a credential from the issuer. The way this flow is initiated is implementation dependent and in some cases (notably in {{OIDC4VCI}}) the flow often starts with the subject visiting a web page at the issuer where the subject is first authenticated and then presented with means to launch a credential issuance request using their mediator. These details are left out from the diagram above.
 
