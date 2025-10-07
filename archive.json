@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-05T00:35:25.704896+00:00",
+  "timestamp": "2025-10-07T00:31:44.730063+00:00",
   "repo": "leifj/vdcarch",
   "labels": [
     {
@@ -383,7 +383,7 @@
       "labels": [],
       "body": "Adds Brent Z and Tim C as co-authors",
       "createdAt": "2025-09-09T14:40:07Z",
-      "updatedAt": "2025-09-09T18:41:15Z",
+      "updatedAt": "2025-10-06T21:53:23Z",
       "baseRepository": "leifj/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "3bb5010d1478eb30ad879e488a52a439af4ca98a",
@@ -394,7 +394,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I somehow got this to work in #16",
+          "createdAt": "2025-10-06T21:53:23Z",
+          "updatedAt": "2025-10-06T21:53:23Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOKFiMhc6-5y34",
@@ -423,7 +431,7 @@
       "labels": [],
       "body": "Testing the build tools",
       "createdAt": "2025-09-09T21:22:14Z",
-      "updatedAt": "2025-09-10T12:48:55Z",
+      "updatedAt": "2025-10-06T21:52:58Z",
       "baseRepository": "leifj/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "2972429b0cb5415cb095c3835774ded5f5ed4eeb",
@@ -441,6 +449,13 @@
           "body": "still broken \ud83d\ude21. This time it may be because of the size of the second diagram, but the error isn't clear.",
           "createdAt": "2025-09-10T12:48:22Z",
           "updatedAt": "2025-09-10T12:48:55Z"
+        },
+        {
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I somehow got this content to work in #16 ",
+          "createdAt": "2025-10-06T21:52:58Z",
+          "updatedAt": "2025-10-06T21:52:58Z"
         }
       ],
       "reviews": []
@@ -450,20 +465,88 @@
       "id": "PR_kwDOKFiMhc6r_-Cn",
       "title": "Add VCDM profile",
       "url": "https://github.com/leifj/vdcarch/pull/15",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "brentzundel",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "fixes #9",
       "createdAt": "2025-10-03T17:28:07Z",
-      "updatedAt": "2025-10-03T17:28:07Z",
+      "updatedAt": "2025-10-06T22:04:02Z",
       "baseRepository": "leifj/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "5c296a87f9fc0ca7016027c2de660245b7e6b529",
       "headRepository": "brentzundel/vdcarch",
       "headRefName": "issue-9",
       "headRefOid": "f5a92f54f89f65b85e01a7bdda283a8d18c4813b",
+      "closedAt": "2025-10-06T22:04:01Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "body": "closing in favor of #17, which has the same content but actually builds",
+          "createdAt": "2025-10-06T22:04:01Z",
+          "updatedAt": "2025-10-06T22:04:01Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOKFiMhc6sXodh",
+      "title": "Not sure what I did, but it works, includes #13 and #14",
+      "url": "https://github.com/leifj/vdcarch/pull/16",
+      "state": "OPEN",
+      "author": "brentzundel",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Trying to see if removing the diagrams entirely fixes the build pipeline.",
+      "createdAt": "2025-10-06T21:02:12Z",
+      "updatedAt": "2025-10-06T21:49:35Z",
+      "baseRepository": "leifj/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "5c296a87f9fc0ca7016027c2de660245b7e6b529",
+      "headRepository": "brentzundel/vdcarch",
+      "headRefName": "no-diagrams",
+      "headRefOid": "3111625ad45aa5957ed4583aed2c1b2cbed67fb0",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This PR first removed all off the diagrams. That failed.\r\n\r\nThen I deleted the whole file, replaced it with a known good file from another spec, and got it to make locally.\r\nThen I copied and pasted each section back in, running make each time, thinking I would catch the error. I got all the way to the end and it built just fine locally, so I pushed those changes and the PR got a green checkmark!\r\n\r\nSo I took the ascii art from Tim's PR #14 and put it in this PR, and it still succeeded!\r\n\r\n",
+          "createdAt": "2025-10-06T21:45:31Z",
+          "updatedAt": "2025-10-06T21:45:31Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 17,
+      "id": "PR_kwDOKFiMhc6sYTSx",
+      "title": "Add profile with VCDM",
+      "url": "https://github.com/leifj/vdcarch/pull/17",
+      "state": "OPEN",
+      "author": "brentzundel",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #9 ",
+      "createdAt": "2025-10-06T22:02:06Z",
+      "updatedAt": "2025-10-06T22:02:06Z",
+      "baseRepository": "leifj/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "5c296a87f9fc0ca7016027c2de660245b7e6b529",
+      "headRepository": "brentzundel/vdcarch",
+      "headRefName": "vc-profile",
+      "headRefOid": "1c23dcf6b91e47a52fdb95e165b9e15ad65eda4b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
