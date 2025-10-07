@@ -163,14 +163,14 @@ Table of Contents
    about a subject.  Such objects are often called "digital
    credentials".  The use of the word "wallet" is both historic,
    stemming from the origin of some types of wallet in the "crypto" or
-   digital asset community, aswell as meant to make the user think of a
+   digital asset community, as well as meant to make the user think of a
    physical wallet where digital credentials correspond to things like
    credit cards, currency, loyalty cards, identity cards etc.
 
    Arguably the use of the term wallet is often confusing since it may
    lead to assumptions about the fungibility of identity or that
    credentials are exchanged as part of a monetary transaction.  In this
-   specification we will use the term "persentation mediator" when
+   specification we will use the term "presentation mediator" when
    traditionally the term "identity wallet" or "wallet" has been used.
 
 3.2.  Terminology used in this specification
@@ -211,7 +211,7 @@ Table of Contents
    do.  Digital identity can be thought of as a generalization of the
    concept of a user identifier in a protocol.  Today we typically use
    the term data subject (abbreviated as 'subject' when there is no risk
-   of confusion) to denote the actor whoese data is beeing acted upon by
+   of confusion) to denote the actor whose data is being acted upon by
    the protocol.  Most internet protocols represent the data subject as
    a "user" identified by a single unique identifier.  Identifier in use
    by Internet protocols were typically never designed to be unified -
@@ -228,7 +228,7 @@ Table of Contents
    authentication was established as a way to offload the work involved
    in user management from each web application to some form of
    centralized service.  This is sometimes called "single sign on" - a
-   term used to describe the (sometimes, but not alwasy desirable)
+   term used to describe the (sometimes, but not always desirable)
    property of authentication flows that a user can login in (sign on)
    once and have the "logged in" state recognized across multiple
    applications.  State replication across multiple web application
@@ -315,14 +315,14 @@ Table of Contents
    the architecture into direct presentation flow is primarily the
    second point: the IdP has information about every RP the Subject has
    ever used.  Together with the use of linkable attributes at the RP
-   this becomes a major privacy leak and a signifficant drawback of this
+   this becomes a major privacy leak and a significant drawback of this
    type of architecture.
 
-   The notion of "Self Sovreign Identity" (SSI) was first introduced in
+   The notion of "Self Sovereign Identity" (SSI) was first introduced in
    the blogpost [PathToSSI] by Christopher Allen.  The concept initially
    relied heavily on the assumed dependency on blockchain technology.
    Recently there has been work to abstract the concepts of SSI away
-   from a dependency on specificy technical solutions and desribe the
+   from a dependency on specific technical solutions and describe the
    key concepts of SSI independently of the use of blockchain.
 
    The purpose of this document is to create a reference architecture
@@ -335,13 +335,13 @@ Table of Contents
 
    Direct presentation flow should be seen as a generalization of the
    Self-Sovereign Identity concept in the sense that unlike SSI, direct
-   presentation make no assumptions or value judgements about the
+   presentation make no assumptions or value judgement about the
    relative merits of third party data ownership and control.  The basic
    architecture of direct presentation does empower the user with more
    control than the federated model does but in the SSI architecture the
    user always has full control over every aspect of data sharing with
    the RP.  This is not necessarily true (eg for legal reasons) in all
-   cases which is why there is a need to desribe the technical
+   cases which is why there is a need to describe the technical
    underpinnings of direct presentation flows in such a way that the
    full SSI model can be a special case of a direct presentation
    architecture.
@@ -372,7 +372,7 @@ Table of Contents
    presentation mediator.
 
    Often the presenter and subject is one and the same entity, eg a
-   natural person controling her own credentials.  There are several
+   natural person controlling her own credentials.  There are several
    situations where the presenter and subject are different entities
    however, for instance cases where presentation is delegated from a
    legal entity to an officer of a company or when care staff helps
@@ -422,16 +422,16 @@ Table of Contents
    example is a presentation proof that a subject is legally permitted
    to take driving lessons.  This is a binary attribute the result of a
    computation involving knowledge of both the biological age of the
-   subject aswell as legal restrictions that apply to the juristiction
+   subject as well as legal restrictions that apply to the jurisdiction
    where the verifier is operating.
 
 5.6.  Issuer and Verifier
 
-   An issuer is a set of protcol endpoints that allow a mediator to
+   An issuer is a set of protocol endpoints that allow a mediator to
    receive a credential.  Credentials issued by the issuer are
    cryptographically bound to that issuer and to the receiving mediator.
 
-   A verfier is a set of protocol endpoints that allow a mediator to
+   A verifier is a set of protocol endpoints that allow a mediator to
    send a presentation to a verifier.  A verifier is typically a
    component used to provide an application with data about the subject
    - for instance in the context of an authentication process.
@@ -563,14 +563,14 @@ Table of Contents
    presentation proof.
 
    Note that there are situations where selective disclosure isn't
-   applicable, for instance when the data subject is legally complelled
+   applicable, for instance when the data subject is legally compelled
    to present a credential.  Exactly when selective disclosure is
    available as an option and what aspects of the credential is
    meaningful to select is an implementation issue and out of scope.
 
 7.3.  Issuer Binding
 
-   A verifier MUST be able to verifiy the identity of the issuer of the
+   A verifier MUST be able to verify the identity of the issuer of the
    credential from a presentation proof.
 
 7.4.  Mediator Binding
@@ -618,7 +618,7 @@ Table of Contents
        of [OIDC4VP]
 
    A mediator conforming to this profile is essentially an openid
-   connect store-and-proove proxy with a user interface allowing the
+   connect store-and-prove proxy with a user interface allowing the
    subject control over selective disclosure.
 
    This minimal profile fulfills several of the requirements in the
@@ -638,12 +638,12 @@ Table of Contents
       presentation objects, never reusing the same SD-JWT credential for
       separate verifiers.
 
-   This profile does not provide any solution for revocation and it
-   leaves the question of how OpenID connect entities (issuers,
-   verifiers and mediator) trust each other.  There are also real
-   scalability issues involved in how the digital signature keys are
-   managed but as a minimal profile it illustrates the components
-   necessary to make a direct presentation architecture work.
+      This profile does not provide any solution for revocation and it
+      leaves the question of how OpenID connect entities (issuers,
+      verifiers and mediator) trust each other.  There are also real
+      scalability issues involved in how the digital signature keys are
+      managed but as a minimal profile it illustrates the components
+      necessary to make a direct presentation architecture work.
 
 8.2.  Anoncreds
 
@@ -651,17 +651,17 @@ Table of Contents
 
 8.3.  The EU Digital Identity Wallet
 
-   The EU digital identity wallet (EUID wallet) as defined by the
+   The EU Digital Identity Wallet (EUDI Wallet) as defined by the
    architecture reference framework [ARF] is an evolving profile for a
    direct presentation architecture that includes several aspects of the
-   minimal profile above.  Note that the EUID wallet specification is in
-   flux and subect to signifficant change.
+   minimal profile above.  Note that the EUDI Wallet specification is in
+   flux and subject to significant change.
 
 9.  Security Considerations
 
    One of the main security considerations of a direct presentation
    credential architecture is how to establish the transactional trust
-   between both the entities (mediators, issuers and verifiers) aswell
+   between both the entities (mediators, issuers and verifiers) as well
    as the technical trust necessary for the cryptographic binding
    between the digital credentials and their associated presentation.
    Digital credentials are sometimes long-lived which also raises the
@@ -675,13 +675,13 @@ Table of Contents
 
 11.1.  Normative References
 
-   [OIDC4VCI] Lodderstedt, T., Yatsuda, K., and T. Looker, "OpenID for
+   [OIDC4VCI] Lodderstedt, T., Yasuda, K., and T. Looker, "OpenID for
               Verifiable Credential Issuance", n.d.,
               <https://openid.net/specs/openid-4-verifiable-credential-
               issuance-1_0.html>.
 
-   [OIDC4VP]  Terbu, O., Lodderstedt, T., Yatsuda, K., Lemmon, A., and
-              T. Looker, "OpenID for Verifiable Presentations", n.d.,
+   [OIDC4VP]  Terbu, O., Lodderstedt, T., Yasuda, K., Lemmon, A., and T.
+              Looker, "OpenID for Verifiable Presentations", n.d.,
               <https://openid.net/specs/openid-connect-4-verifiable-
               presentations-1_0-07.html#name-authors-addresses>.
 
@@ -711,7 +711,7 @@ Table of Contents
               C. Mortimore, "OpenID Connect Core 1.0", 2014.
 
    [PathToSSI]
-              Allen, C., "The Path to Self-Sovereign Identiy", n.d.,
+              Allen, C., "The Path to Self-Sovereign Identity", n.d.,
               <http://www.lifewithalacrity.com/2016/04/the-path-to-self-
               soverereign-identity.html>.
 
