@@ -4,12 +4,15 @@
 
 Network Working Group                                       L. Johansson
 Internet-Draft                                                     Sunet
-Intended status: Informational                              3 March 2025
-Expires: 4 September 2025
+Intended status: Informational                                 B. Zundel
+Expires: 10 April 2026                                      Tradeverifyd
+                                                             T. Cappalli
+                                                                    Okta
+                                                          7 October 2025
 
 
    A reference architecture for direct presentation credential flows
-            draft-johansson-direct-presentation-arch-latest
+                    draft-ietf-spice-vdcarch-latest
 
 Abstract
 
@@ -42,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 September 2025.
+   This Internet-Draft will expire on 10 April 2026.
 
 Copyright Notice
 
@@ -62,16 +65,18 @@ Table of Contents
 
    1.  Conventions
    2.  Introduction
-   3.  Terminology
+   3.  Terminology and Roles
      3.1.  Naming the elephant in the room
      3.2.  Terminology used in this specification
    4.  A Note on History
    5.  Actors and Entities
      5.1.  Subject and Presenter
-     5.2.  Presentation Mediator
-     5.3.  Credential Store
-     5.4.  Credentials and Presentation Proofs
-     5.5.  Issuer and Verifier
+     5.2.  Presentation Mediator (Credential Presentation User Agent)
+     5.3.  Credential Recipient Mediator (Credential Recipient User
+           Agent)
+     5.4.  Credential Store
+     5.5.  Credentials and Presentation Proofs
+     5.6.  Issuer and Verifier
    6.  Presentation Flows
      6.1.  Direct Presentation Flow
      6.2.  Delegated or Assisted Presentation Flow
@@ -92,7 +97,7 @@ Table of Contents
      11.1.  Normative References
      11.2.  Informative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Conventions
 
@@ -104,12 +109,12 @@ Table of Contents
 
 2.  Introduction
 
-   Digital credentials, which assert claims about individuals,
-   organizations, or devices, have become essential tools in modern
-   identity systems.  Whether verifying an individual's qualifications,
-   attesting to an enterprise's compliance, or authorizing an IoT
-   device, these credentials rely on secure, efficient, and privacy-
-   preserving mechanisms for their use.
+   Verifiable digital credentials, which assert claims about
+   individuals, organizations, or devices, have become essential tools
+   in modern identity systems.  Whether verifying an individual's
+   qualifications, attesting to an enterprise's compliance, or
+   authorizing an IoT device, these credentials rely on secure,
+   efficient, and privacy-preserving mechanisms for their use.
 
    Traditional federated identity systems often rely on intermediaries
    or delegation, which can compromise user privacy or introduce
@@ -126,7 +131,30 @@ Table of Contents
    scalable and interoperable system that can adapt to diverse
    regulatory and operational environments.
 
-3.  Terminology
+3.  Terminology and Roles
+
+   Credential manager:  An application, hardware device, or service
+      which securely stores, organizes, manages, and enables
+      presentation of credentials.  Digital wallets, password managers,
+      and passkeys managers are examples of credential managers.
+
+   Issuer:  The entity that cryptographically signs a verifiable digital
+      credential, thereby asserting its claims about a subject
+
+   Issuer service:  The underlying platform or infrastructure service
+      which enables an Issuer to issue a verifiable digital credential.
+
+   Verifiable digital credential (VDC):  A cryptographically verifiable,
+      tamper-evident assertion of claims about a subject, signed by an
+      Issuer.  VDCs are stored in a Credential Manager.
+
+   Verifier:  The entity that cryptographically validates the
+      authenticity and integrity of a verifiable digital credential.  A
+      verifier is typically, but not always, the relying party.
+
+   Verifier service:  The underlying platform or infrastructure service
+      which enables a Verifier to validate a verifiable digital
+      credential.
 
 3.1.  Naming the elephant in the room
 
@@ -250,16 +278,33 @@ Table of Contents
    nor do we consider how the Subject is represented in the interaction
    between the IdP and RP (eg if a user-agent is involved).
 
-   Subject -> RP: Initiate authentication flow
-   RP -> IdP: Authentication request
-   IdP --> Subject: Prompt for login credentials
-   Subject --> IdP: Presents login credentials
-   RP <-- IdP: Authentication response
-   Subject <-- RP: Success!
+        ┌───────┐                       ┌──┐                     ┌───┐
+        │Subject│                       │RP│                     │IdP│
+        └───┬───┘                       └─┬┘                     └─┬─┘
+            │Initiate authentication flow │                        │
+            │────────────────────────────>│                        │
+            │                             │                        │
+            │                             │Authentication request  │
+            │                             │───────────────────────>│
+            │                             │                        │
+            │            Prompt for login credentials              │
+            │<─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─│
+            │                             │                        │
+            │             Presents login credentials               │
+            │ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ >│
+            │                             │                        │
+            │                             │Authentication response │
+            │                             │<─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─│
+            │                             │                        │
+            │          Success!           │                        │
+            │<─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ │                        │
+        ┌───┴───┐                       ┌─┴┐                     ┌─┴─┐
+        │Subject│                       │RP│                     │IdP│
+        └───────┘                       └──┘                     └───┘
 
    Note that
 
-   *  The Subject only presents login credentials to the RP
+   *  The Subject only presents login credentials to the IdP
 
    *  The IdP learns which RP the subject is requesting access to
 
@@ -316,27 +361,43 @@ Table of Contents
    the architecture to support complex use cases, such as power-of-
    attorney scenarios or enterprise credentialing systems.
 
-5.2.  Presentation Mediator
+5.2.  Presentation Mediator (Credential Presentation User Agent)
 
    The presentation mediator (mediator for short) is the core active
    component of this architecture.  It initiates and mediates credential
    presentations, ensuring compliance with data subject preferences and
    system policies.  For example, it might enforce selective disclosure,
    revealing only the subject's date of birth to a verifier while
-   withholding other personal details.  The subject controls a
+   withholding other personal details.  The presenter controls a
    presentation mediator.
+
+   Often the presenter and subject is one and the same entity, eg a
+   natural person controling her own credentials.  There are several
+   situations where the presenter and subject are different entities
+   however, for instance cases where presentation is delegated from a
+   legal entity to an officer of a company or when care staff helps
+   somebody with disabilities present personal credentials.
 
    Unlike a credential store, the presentation mediator is responsible
    for orchestrating interactions with verifiers, performing
    cryptographic operations, and generating presentation proofs.
 
    The mediator is used by the subject to communicate with issuers and
-   verifiers.  The nature of the control the user has over the mediator
-   varies but minimally the user must be able to initiate the receipt of
-   credentials from an issuer and the generation and transmission of
-   presentation proofs to a verifier.
+   by the presenter to communicate with verifiers.  The nature of the
+   control the presenter/subject has over the mediator varies but
+   minimally the subject must be able to initiate the receipt of
+   credentials from an issuer and the presenter has to be able to
+   generation and transmission of presentation proofs to a verifier.
 
-5.3.  Credential Store
+   The mediator acts on behalf of the subject when receiving credentials
+   from an issuer and the issuance process typically involves
+   authenticating the subject to the issuer.  This can happen by the use
+   of some delegated authentication exchange whereby the subject is
+   represented by some other entity.
+
+5.3.  Credential Recipient Mediator (Credential Recipient User Agent)
+
+5.4.  Credential Store
 
    The credential store is a passive repository where credentials are
    securely stored.  Its primary function is to provide the presentation
@@ -345,7 +406,7 @@ Table of Contents
    the architecture enhances modularity and allows credential stores to
    be managed independently from presentation logic.
 
-5.4.  Credentials and Presentation Proofs
+5.5.  Credentials and Presentation Proofs
 
    A digital identity credential (abbreviated as 'credential' in this
    document) is an object representing a set of data associated with a
@@ -364,7 +425,7 @@ Table of Contents
    subject aswell as legal restrictions that apply to the juristiction
    where the verifier is operating.
 
-5.5.  Issuer and Verifier
+5.6.  Issuer and Verifier
 
    An issuer is a set of protcol endpoints that allow a mediator to
    receive a credential.  Credentials issued by the issuer are
@@ -386,29 +447,48 @@ Table of Contents
 
    The basic direct presentation flows looks like this:
 
-   group issuance
-      Subject --> Mediator: <<initiate credential request>>
-      activate Mediator
-      Issuer <-- Mediator: request credential
-      activate Issuer
-      Issuer --> Issuer: <<generate credential>>
-      return credential
-      deactivate Issuer
-      deactivate Mediator
-      deactivate Subject
-   end
-
-   group verification
-      Verifier --> Mediator: request presentation
-      activate Mediator
-      Mediator --> Presenter: <<prompt to select credential(s)>>
-      activate Presenter
-      Mediator <-- Presenter: <<select claims from credential(s)>>
-      deactivate Presenter
-      Mediator --> Mediator: <<generate presentation proof selection>>
-      return presentation proof
-      deactivate Mediator
-   end
+                    ┌───────┐                       ┌────────┐                                              ┌──────┐                            ┌────────┐           ┌─────────┐
+                    │Subject│                       │Mediator│                                              │Issuer│                            │Verifier│           │Presenter│
+                    └───┬───┘                       └────┬───┘                                              └───┬──┘                            └────┬───┘           └────┬────┘
+                        │                                │                                                      │                                    │                    │
+          ╔═══════════╤═╪════════════════════════════════╪══════════════════════════════════════════════════════╪════════════════════════════════════╪══╗                 │
+          ║ ISSUANCE  │ │                                │                                                      │                                    │  ║                 │
+          ╟───────────┘ <<initiate credential request>> ┌┴┐                                                     │                                    │  ║                 │
+          ║             │ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ > │ │                                                     │                                    │  ║                 │
+          ║             │                               │ │                                                     │                                    │  ║                 │
+          ║             │                               │ │                 request credential                 ┌┴┐                                   │  ║                 │
+          ║             │                               │ │  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─>│ │                                   │  ║                 │
+          ║             │                               │ │                                                    │ │                                   │  ║                 │
+          ║             │                               │ │                                                    │ │ ─ ─ ┐                             │  ║                 │
+          ║             │                               │ │                                                    │ │     | <<generate credential>>     │  ║                 │
+          ║             │                               │ │                                                    │ │ < ─ ┘                             │  ║                 │
+          ║             │                               └┬┘                                                    └┬┘                                   │  ║                 │
+          ║             │                                │                     credential                       │                                    │  ║                 │
+          ║             │                                │<─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─│                                    │  ║                 │
+          ╚═════════════╪════════════════════════════════╪══════════════════════════════════════════════════════╪════════════════════════════════════╪══╝                 │
+                        │                                │                                                      │                                    │                    │
+                        │                                │                                                      │                                    │                    │
+                        │                 ╔══════════════╪╤═════════════════════════════════════════════════════╪════════════════════════════════════╪════════════════════╪══════════════╗
+                        │                 ║ VERIFICATION  │                                                     │                                    │                    │              ║
+                        │                 ╟───────────────┘                                   request presentation                                   │                    │              ║
+                        │                 ║             │ │ <─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ │                    │              ║
+                        │                 ║             │ │                                                     │                                    │                    │              ║
+                        │                 ║             │ │                                      <<prompt to select credential(s)>>                  │                   ┌┴┐             ║
+                        │                 ║             │ │  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─>│ │             ║
+                        │                 ║             │ │                                                     │                                    │                   └┬┘             ║
+                        │                 ║             │ │                                     <<select claims from credential(s)>>                 │                    │              ║
+                        │                 ║             │ │ <─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─│              ║
+                        │                 ║             │ │                                                     │                                    │                    │              ║
+                        │                 ║             │ │ ─ ─ ┐                                               │                                    │                    │              ║
+                        │                 ║             │ │     | <<generate presentation proof selection>>     │                                    │                    │              ║
+                        │                 ║             │ │ < ─ ┘                                               │                                    │                    │              ║
+                        │                 ║             └┬┘                                                     │                                    │                    │              ║
+                        │                 ║              │                                    presentation proof│                                    │                    │              ║
+                        │                 ║              │ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─>│                    │              ║
+                        │                 ╚══════════════╪══════════════════════════════════════════════════════╪════════════════════════════════════╪════════════════════╪══════════════╝
+                    ┌───┴───┐                       ┌────┴───┐                                              ┌───┴──┐                            ┌────┴───┐           ┌────┴────┐
+                    │Subject│                       │Mediator│                                              │Issuer│                            │Verifier│           │Presenter│
+                    └───────┘                       └────────┘                                              └──────┘                            └────────┘           └─────────┘
 
    The mediator (acting on behalf of the subject) requests a credential
    from the issuer.  The way this flow is initiated is implementation
@@ -616,9 +696,9 @@ Table of Contents
 
    [SDJWT]    Fett, D., Yasuda, K., and B. Campbell, "Selective
               Disclosure for JWTs (SD-JWT)", Work in Progress, Internet-
-              Draft, draft-ietf-oauth-selective-disclosure-jwt-17, 1
-              March 2025, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-oauth-selective-disclosure-jwt-17>.
+              Draft, draft-ietf-oauth-selective-disclosure-jwt-22, 29
+              May 2025, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-oauth-selective-disclosure-jwt-22>.
 
 11.2.  Informative References
 
@@ -662,8 +742,21 @@ Acknowledgments
 
    *  Jeff Hodges
 
-Author's Address
+Authors' Addresses
 
    Leif Johansson
    Sunet
+   Sweden
    Email: leifj@sunet.se
+
+
+   Brent W. Zundel
+   Tradeverifyd
+   United States
+   Email: brent.zundel@gmail.com
+
+
+   Tim Cappalli
+   Okta
+   United States
+   Email: timcappalli@cloudauth.dev
