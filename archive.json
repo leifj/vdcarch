@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-07T00:31:44.730063+00:00",
+  "timestamp": "2025-10-09T00:31:44.146594+00:00",
   "repo": "leifj/vdcarch",
   "labels": [
     {
@@ -47,6 +47,11 @@
       "name": "wontfix",
       "description": "This will not be worked on",
       "color": "ffffff"
+    },
+    {
+      "name": "discuss",
+      "description": null,
+      "color": "aaaaaa"
     }
   ],
   "issues": [
@@ -59,12 +64,12 @@
       "author": "leifj",
       "authorAssociation": "OWNER",
       "assignees": [
-        "brentzundel"
+        "timcappalli"
       ],
       "labels": [],
       "body": "",
       "createdAt": "2023-08-17T12:41:52Z",
-      "updatedAt": "2025-09-12T15:12:42Z",
+      "updatedAt": "2025-10-07T14:38:14Z",
       "closedAt": null,
       "comments": [
         {
@@ -101,6 +106,13 @@
           "body": "I don't have a strong preference here. We used attribute bundles as a way to avoid the term credential because of how we currently used it in the document set and it would have been extremely challenging to unwind its uses across all four volumes. If the argument is that the content of a VDC is a signed set of claims about a user I think that is reasonable and consistent with many other descriptions. We would of course be fine with attributes (the individual elements) or attribute bundles (the signed package, more aligned to \"VDC\") but are also happy to go with consensus. ",
           "createdAt": "2025-09-12T15:12:42Z",
           "updatedAt": "2025-09-12T15:12:42Z"
+        },
+        {
+          "author": "timcappalli",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Also we should replace \"data subject\" with \"credential subject\".",
+          "createdAt": "2025-10-07T14:27:20Z",
+          "updatedAt": "2025-10-07T14:27:20Z"
         }
       ]
     },
@@ -127,7 +139,7 @@
       "id": "I_kwDOKFiMhc7IBkCv",
       "title": "Add holder and holder binding definitions",
       "url": "https://github.com/leifj/vdcarch/issues/4",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "timcappalli",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -136,9 +148,17 @@
       "labels": [],
       "body": "Holder may not be subject, but you are still the one authorizing release via the credential manager.\n\nIn NIST terms, it is often the person who is using the activation factor.",
       "createdAt": "2025-08-26T14:17:40Z",
-      "updatedAt": "2025-08-26T14:38:25Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-10-07T14:24:32Z",
+      "closedAt": "2025-10-07T14:24:32Z",
+      "comments": [
+        {
+          "author": "timcappalli",
+          "authorAssociation": "COLLABORATOR",
+          "body": "merged into #5 ",
+          "createdAt": "2025-10-07T14:24:32Z",
+          "updatedAt": "2025-10-07T14:24:32Z"
+        }
+      ]
     },
     {
       "number": 5,
@@ -150,9 +170,9 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "Verifier\nVerifier service\nIssuer \nIssuer service\nCredential manager\nTrust service\nTrust framework\nHolder",
+      "body": "- [x] Verifier\n- [x] Verifier service\n- [x] Issuer \n- [x] Issuer service\n- [x] Credential manager\n- [ ] Trust service\n- [ ] Trust framework\n- [ ] Holder\n- [ ] Holder binding\n- [ ] Authentic source\n- [ ] Credential to Biometric Binding (?)",
       "createdAt": "2025-08-26T14:22:48Z",
-      "updatedAt": "2025-09-09T14:30:45Z",
+      "updatedAt": "2025-10-07T14:24:20Z",
       "closedAt": null,
       "comments": [
         {
@@ -221,13 +241,23 @@
       "state": "OPEN",
       "author": "brentzundel",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "brentzundel"
+      ],
       "labels": [],
       "body": "Does 7.1 need to be re-worked to better apply to non-agent subjects?\nhttps://leifj.github.io/wallet-refarch/draft-johansson-direct-presentation-arch.html#section-7.1",
       "createdAt": "2025-08-26T14:31:03Z",
-      "updatedAt": "2025-08-26T14:31:03Z",
+      "updatedAt": "2025-10-07T14:39:53Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "body": "After several conversation on this, we seem to be in agreement that the credential subject (formerly data subject) may be, but is not always, the one receiving and presenting credentials.",
+          "createdAt": "2025-10-07T14:39:53Z",
+          "updatedAt": "2025-10-07T14:39:53Z"
+        }
+      ]
     },
     {
       "number": 9,
@@ -276,6 +306,24 @@
       "body": "The document should contain some normative language that serves to exclude \"regular\" message-passing architecture - eg email.",
       "createdAt": "2025-09-09T14:17:26Z",
       "updatedAt": "2025-09-09T14:17:26Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 18,
+      "id": "I_kwDOKFiMhc7QHy8W",
+      "title": "Expand Profile section intro text",
+      "url": "https://github.com/leifj/vdcarch/issues/18",
+      "state": "OPEN",
+      "author": "timcappalli",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "discuss"
+      ],
+      "body": "- Here's what a profile is\n- How the profile complies to the normative requirements listed above\n- Information purposes only, use based\n- Components",
+      "createdAt": "2025-10-07T14:18:59Z",
+      "updatedAt": "2025-10-07T14:18:59Z",
       "closedAt": null,
       "comments": []
     }
@@ -376,21 +424,21 @@
       "id": "PR_kwDOKFiMhc6noBET",
       "title": "Add Brent and Tim",
       "url": "https://github.com/leifj/vdcarch/pull/13",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "timcappalli",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Adds Brent Z and Tim C as co-authors",
       "createdAt": "2025-09-09T14:40:07Z",
-      "updatedAt": "2025-10-06T21:53:23Z",
+      "updatedAt": "2025-10-07T14:13:52Z",
       "baseRepository": "leifj/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "3bb5010d1478eb30ad879e488a52a439af4ca98a",
       "headRepository": "leifj/vdcarch",
       "headRefName": "authors",
       "headRefOid": "6b5ee80827e09dcbbcda3706a508ea10a06745cf",
-      "closedAt": null,
+      "closedAt": "2025-10-07T14:13:52Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -424,21 +472,21 @@
       "id": "PR_kwDOKFiMhc6nsCHB",
       "title": "Temporarily convert plantuml to ascii for tooling",
       "url": "https://github.com/leifj/vdcarch/pull/14",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "timcappalli",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Testing the build tools",
       "createdAt": "2025-09-09T21:22:14Z",
-      "updatedAt": "2025-10-06T21:52:58Z",
+      "updatedAt": "2025-10-07T14:13:52Z",
       "baseRepository": "leifj/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "2972429b0cb5415cb095c3835774ded5f5ed4eeb",
       "headRepository": "leifj/vdcarch",
       "headRefName": "plantuml2ascii",
       "headRefOid": "11e5db3d17b7d29abb7f376b13c17f1cef057758",
-      "closedAt": null,
+      "closedAt": "2025-10-07T14:13:52Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -499,24 +547,26 @@
       "id": "PR_kwDOKFiMhc6sXodh",
       "title": "Not sure what I did, but it works, includes #13 and #14",
       "url": "https://github.com/leifj/vdcarch/pull/16",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "brentzundel",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "Trying to see if removing the diagrams entirely fixes the build pipeline.",
+      "body": "Trying to see if removing the diagrams entirely fixes the build pipeline.\r\n\r\nCloses #14 \r\nCloses #13 ",
       "createdAt": "2025-10-06T21:02:12Z",
-      "updatedAt": "2025-10-06T21:49:35Z",
+      "updatedAt": "2025-10-07T14:13:51Z",
       "baseRepository": "leifj/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "5c296a87f9fc0ca7016027c2de660245b7e6b529",
       "headRepository": "brentzundel/vdcarch",
       "headRefName": "no-diagrams",
       "headRefOid": "3111625ad45aa5957ed4583aed2c1b2cbed67fb0",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-10-07T14:13:51Z",
+      "mergedAt": "2025-10-07T14:13:51Z",
+      "mergedBy": "timcappalli",
+      "mergeCommit": {
+        "oid": "52d6da6084d77f0ee99d2cd98e28d448235f2e9f"
+      },
       "comments": [
         {
           "author": "brentzundel",
@@ -526,7 +576,21 @@
           "updatedAt": "2025-10-06T21:45:31Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKFiMhc7FT7tJ",
+          "commit": {
+            "abbreviatedOid": "3111625"
+          },
+          "author": "timcappalli",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-07T14:13:44Z",
+          "updatedAt": "2025-10-07T14:13:44Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 17,
@@ -540,19 +604,121 @@
       "labels": [],
       "body": "fixes #9 ",
       "createdAt": "2025-10-06T22:02:06Z",
-      "updatedAt": "2025-10-06T22:02:06Z",
+      "updatedAt": "2025-10-07T14:15:00Z",
       "baseRepository": "leifj/vdcarch",
       "baseRefName": "main",
-      "baseRefOid": "5c296a87f9fc0ca7016027c2de660245b7e6b529",
+      "baseRefOid": "52d6da6084d77f0ee99d2cd98e28d448235f2e9f",
       "headRepository": "brentzundel/vdcarch",
       "headRefName": "vc-profile",
-      "headRefOid": "1c23dcf6b91e47a52fdb95e165b9e15ad65eda4b",
+      "headRefOid": "69a6fa4591f093a171e6dfecbb269a831975ad1e",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 19,
+      "id": "PR_kwDOKFiMhc6shEt4",
+      "title": "Spelling and formatting fixes",
+      "url": "https://github.com/leifj/vdcarch/pull/19",
+      "state": "MERGED",
+      "author": "timcappalli",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-07T15:08:03Z",
+      "updatedAt": "2025-10-07T19:58:31Z",
+      "baseRepository": "leifj/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "9d1aed4410804c6dd832770f5382d3252354fac1",
+      "headRepository": "leifj/vdcarch",
+      "headRefName": "tc-spelling",
+      "headRefOid": "c0df72176f34a8a277853b4949bf636dc38c0b99",
+      "closedAt": "2025-10-07T19:58:25Z",
+      "mergedAt": "2025-10-07T19:58:25Z",
+      "mergedBy": "timcappalli",
+      "mergeCommit": {
+        "oid": "bbed106b843e72c8645253ba771d3075007f8504"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKFiMhc7FZA9f",
+          "commit": {
+            "abbreviatedOid": "539a463"
+          },
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "lgtm, but it's failing for some reason",
+          "createdAt": "2025-10-07T19:50:25Z",
+          "updatedAt": "2025-10-07T19:50:25Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKFiMhc7FZFX3",
+          "commit": {
+            "abbreviatedOid": "539a463"
+          },
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-07T19:53:56Z",
+          "updatedAt": "2025-10-07T19:53:56Z",
+          "comments": [
+            {
+              "originalPosition": 165,
+              "body": "```suggestion\r\n```\r\ngetting rid of this line will make it build, I think",
+              "createdAt": "2025-10-07T19:53:56Z",
+              "updatedAt": "2025-10-07T19:53:56Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "id": "PR_kwDOKFiMhc6shFV-",
+      "title": "s/\"data subject\"/\"credential subject\" and s/data/claims",
+      "url": "https://github.com/leifj/vdcarch/pull/20",
+      "state": "OPEN",
+      "author": "timcappalli",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #1 ",
+      "createdAt": "2025-10-07T15:08:51Z",
+      "updatedAt": "2025-10-07T20:25:08Z",
+      "baseRepository": "leifj/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "bbed106b843e72c8645253ba771d3075007f8504",
+      "headRepository": "leifj/vdcarch",
+      "headRefName": "tc-swap-datasubject",
+      "headRefOid": "07ca63f7ffdf0ea2f6538d51db302cba923c6ab4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKFiMhc7FYuCN",
+          "commit": {
+            "abbreviatedOid": "07067f9"
+          },
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-07T19:28:16Z",
+          "updatedAt": "2025-10-07T19:28:16Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
