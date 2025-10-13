@@ -1,0 +1,36 @@
+{
+    "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+    "version": "0.2",
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
+    "words": [
+        "anoncreds",
+        "Breno",
+        "Cappalli",
+        "docname",
+        "EUDI",
+        "hyperledger",
+        "Johansson",
+        "Lemmon",
+        "linkability",
+        "Lodderstedt",
+        "Medeiros",
+        "Mortimore",
+        "OPENIDC",
+        "Sakimura",
+        "SDJWT",
+        "sortrefs",
+        "sstc",
+        "Sunet",
+        "symrefs",
+        "Terbu",
+        "Torsten",
+        "Tradeverifyd",
+        "vdcarch",
+        "Zundel"
+    ],
+    "ignoreWords": [],
+    "enabledFileTypes": [
+        "markdown"
+    ]
+}
