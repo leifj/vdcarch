@@ -326,7 +326,7 @@ Note that
 
 The limitation of this type of architecture and the need to evolve the architecture into direct presentation flow is primarily the second point: the IdP has information about every RP the Subject has ever used. Together with the use of linkable attributes at the RP this becomes a major privacy leak and a significant drawback of this type of architecture.
 
-The notion of "Self Sovreign Identity" (SSI) was first introduced in the blogpost [PathToSSI] by Christopher Allen. The concept initially relied heavily on the assumed dependency on blockchain technology. Recently there has been work to abstract the concepts of SSI away from a dependency on specificy technical solutions and desribe the key concepts of SSI independently of the use of blockchain, such as the work in {{VCDM2}}.
+The notion of "Self Sovereign Identity" (SSI) was first introduced in the blogpost [PathToSSI] by Christopher Allen. The concept initially relied heavily on the assumed dependency on blockchain technology. Recently there has been work to abstract the concepts of SSI away from a dependency on specific technical solutions and describe the key concepts of SSI independently of the use of blockchain, such as the work in {{VCDM2}}.
 
 The purpose of this document is to create a reference architecture for some of the concepts involved in SSI in such a way that different implementations can be contrasted and compared. This document attempts to define a set of core normative requirement and also introduce the notion of direct presentation flow to denote the practice of using a mediator to allow the data subject control over the digital credential sharing flow.
 
@@ -531,7 +531,7 @@ An expansion of the minimal profile above:
   7. A verifier implements RP side of {{OIDC4VP}}
   8. A mediator implements the RP side of {{OIDC4VCI}} and the OP side of {{OIDC4VP}}
 
-A mediator conforming to this profile is also essentially an openid connect store-and-proove proxy with a user interface allowing the subject control over selective disclosure, with some additional benefits.
+A mediator conforming to this profile is also essentially an OpenID Connect store-and-proove proxy with a user interface allowing the subject control over selective disclosure, with some additional benefits.
 
 This profile fulfills several of the requirements in the previous section:
 
