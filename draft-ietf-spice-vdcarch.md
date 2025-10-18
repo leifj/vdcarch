@@ -122,7 +122,7 @@ This document defines a reference architecture for direct presentation flows of 
 
 Verifiable digital credentials, which assert claims about individuals, organizations, or devices, have become essential tools in modern identity systems. Whether verifying an individual's qualifications, attesting to an enterprise's compliance, or authorizing an IoT device, these credentials rely on secure, efficient, and privacy-preserving mechanisms for their use.
 
-Traditional federated identity systems often rely on intermediaries or delegation, which can compromise user privacy or introduce inefficiencies. This document presents an architecture for direct presentation flows, where credentials are presented directly to verifiers without unnecessary intermediaries, empowering the data subject or their authorized representative to maintain control over the credential's use.
+Traditional federated identity systems often rely on intermediaries or delegation, which can compromise user privacy or introduce inefficiencies. This document presents an architecture for direct presentation flows, where credentials are presented directly to verifiers without unnecessary intermediaries, empowering the credential subject or their authorized representative to maintain control over the credential's use.
 
 At the heart of this architecture is the presentation mediator, an active software component responsible for facilitating secure and privacy-aware interactions. This mediator works in tandem with passive credential stores, verifiers, and issuers, creating a scalable and interoperable system that can adapt to diverse regulatory and operational environments.
 
@@ -156,17 +156,17 @@ Arguably the use of the term wallet is often confusing since it may lead to assu
 
 To anchor this architecture, we define key terms:
 
-- A presentation mediator is an active software component that manages the presentation of credentials to the verifier on behalf of the data subject.
+- A presentation mediator is an active software component that manages the presentation of credentials to the verifier on behalf of the credential subject.
 - A credential store is a passive repository for securely storing credentials. It supports the presentation mediator by providing access to stored credentials without performing active operations.
-- The data subject is the entity the credential pertains to, such as an individual or organization.
-- A presenter is the actor that delivers a credential to a verifier. While often the data subject, the presenter could also be an authorized agent or software acting on their behalf.
+- The credential subject is the entity the credential pertains to, such as an individual or organization.
+- A presenter is the actor that delivers a credential to a verifier. While often the credential subject, the presenter could also be an authorized agent or software acting on their behalf.
 - A credential is a signed, structured document containing claims about a subject, issued by a trusted entity.
 - An attestation is a statement about a credential, often used to validate or certify its properties, such as its integrity or scope.
 - A presentation proof is a derived artifact that proves claims from a credential in a specific interaction with a verifier.
 
 # A Note on History
 
-The origins of the notion of digital identity goes back to the mid 1990s. Historically, Internet protocols were designed to deal with authentication and (sometimes) authorization, i.e. the question of what entity is accessing the protocol and what they are allowed to do. Digital identity can be thought of as a generalization of the concept of a user identifier in a protocol. Today we typically use the term data subject (abbreviated as 'subject' when there is no risk of confusion) to denote the actor whose data is being acted upon by the protocol. Most internet protocols represent the data subject as a "user" identified by a single unique identifier. Identifier in use by Internet protocols were typically never designed to be unified - each security protocol typically designed a separate structure of identifiers.
+The origins of the notion of digital identity goes back to the mid 1990s. Historically, Internet protocols were designed to deal with authentication and (sometimes) authorization, i.e. the question of what entity is accessing the protocol and what they are allowed to do. Digital identity can be thought of as a generalization of the concept of a user identifier in a protocol. Today we typically use the term credential subject (abbreviated as 'subject' when there is no risk of confusion) to denote the actor whoese data is being acted upon by the protocol. Most internet protocols represent the credential subject as a "user" identified by a single unique identifier. Identifier in use by Internet protocols were typically never designed to be unified - each security protocol typically designed a separate structure of identifiers.
 
 Identifier schemes such as kerberos principal names or X.509 distinguished names are often assumed to be unique across multiple protocol endpoints. This introduces linkability across multiple protocol endpoints. Historically this was never seen as an issue.
 
@@ -176,7 +176,7 @@ In the late 1990s multiple protocols for "web single sign-on" were developed. So
 
 The notion of digital identity evolved as a generalization of the "single sign-on" concept because modern federation protocols (OIDC, SAML etc) are able to transport not only shared state about the sign-in status of a user (eg in the form of a login-cookie) but can also be used to share information about the subject (user) accessing the service. In some cases identity federation protocols made it possible to fully externalize identity management from the application into an "identity provider"; a centralized service responsible for maintaining information about users and _releasing_ such information in the form of _attributes_ to trusted services (aka relying parties).
 
-Federated identity can be thought of as an architecture for digital identity where information about data subjects is maintained by identity providers and shared with relying parties (sometimes called service providers) as needed to allow subjects to be authenticated and associated with appropriate authorization at the relying party.
+Federated identity can be thought of as an architecture for digital identity where information about credential subjects is maintained by identity providers and shared with relying parties (sometimes called service providers) as needed to allow subjects to be authenticated and associated with appropriate authorization at the relying party.
 
 Here is an illustration of how most federation protocols work. In this example the Subject is requesting some resource at the RP that requires authentication. The RP issues an authentication requests which is sent to the IdP. The IdP prompts the user to present login credentials (username/password or some other authentication token) and after successfully verifying that the Subject matches the login credentials in the IdPs database the IdP returns an authentication response to the RP.
 
@@ -228,7 +228,7 @@ The limitation of this type of architecture and the need to evolve the architect
 
 The notion of "Self Sovereign Identity" (SSI) was first introduced in the blogpost [PathToSSI] by Christopher Allen. The concept initially relied heavily on the assumed dependency on blockchain technology. Recently there has been work to abstract the concepts of SSI away from a dependency on specific technical solutions and describe the key concepts of SSI independently of the use of blockchain.
 
-The purpose of this document is to create a reference architecture for some of the concepts involved in SSI in such a way that different implementations can be contrasted and compared. This document attempts to define a set of core normative requirement and also introduce the notion of direct presentation flow to denote the practice of using a mediator to allow the data subject control over the digital credential sharing flow.
+The purpose of this document is to create a reference architecture for some of the concepts involved in SSI in such a way that different implementations can be contrasted and compared. This document attempts to define a set of core normative requirement and also introduce the notion of direct presentation flow to denote the practice of using a mediator to allow the credential subject control over the digital credential sharing flow.
 
 Direct presentation flow should be seen as a generalization of the Self-Sovereign Identity concept in the sense that unlike SSI, direct presentation make no assumptions or value judgement about the relative merits of third party data ownership and control. The basic architecture of direct presentation does empower the user with more control than the federated model does but in the SSI architecture the user always has full control over every aspect of data sharing with the RP. This is not necessarily true (eg for legal reasons) in all cases which is why there is a need to describe the technical underpinnings of direct presentation flows in such a way that the full SSI model can be a special case of a direct presentation architecture.
 
@@ -236,13 +236,13 @@ Direct presentation flow should be seen as a generalization of the Self-Sovereig
 
 ## Subject and Presenter
 
-The data subject is the entity that the credential describes, such as an individual, an organization, or even an IoT device. However, the presenter—the actor delivering the credential to the verifier—may not always be the data subject. For example, an administrator might present credentials on behalf of an organization, or a software agent might act as a presenter in automated workflows.
+The credential subject is the entity that the credential describes, such as an individual, an organization, or even an IoT device. However, the presenter—the actor delivering the credential to the verifier—may not always be the credential subject. For example, an administrator might present credentials on behalf of an organization, or a software agent might act as a presenter in automated workflows.
 
-This distinction between the data subject and the presenter allows the architecture to support complex use cases, such as power-of-attorney scenarios or enterprise credentialing systems.
+This distinction between the credential subject and the presenter allows the architecture to support complex use cases, such as power-of-attorney scenarios or enterprise credentialing systems.
 
 ## Presentation Mediator (Credential Presentation User Agent)
 
-The presentation mediator (mediator for short) is the core active component of this architecture. It initiates and mediates credential presentations, ensuring compliance with data subject preferences and system policies. For example, it might enforce selective disclosure, revealing only the subject's date of birth to a verifier while withholding other personal details. The presenter controls a presentation mediator.
+The presentation mediator (mediator for short) is the core active component of this architecture. It initiates and mediates credential presentations, ensuring compliance with credential subject preferences and system policies. For example, it might enforce selective disclosure, revealing only the subject's date of birth to a verifier while withholding other personal details. The presenter controls a presentation mediator.
 
 Often the presenter and subject is one and the same entity, eg a natural person controlling her own credentials. There are several situations where the presenter and subject are different entities however, for instance cases where presentation is delegated from a legal entity to an officer of a company or when care staff helps somebody with disabilities present personal credentials.
 
@@ -260,7 +260,7 @@ The credential store is a passive repository where credentials are securely stor
 
 ## Credentials and Presentation Proofs
 
-A digital identity credential (abbreviated as 'credential' in this document) is an object representing a set of data associated with a subject. The credential MAY contain data that uniquely identify a single subject. A digital identity credential is typically cryptographically bound both to the issuer and to the mediator where it is stored. A presentation proof (abbreviated as 'presentation' in this document) is a proof that a particular issuer has provided a particular set of credentials to the mediator. A presentation can be verified by at least one verifier. A presentation proof can be based on data present in a single credential or in multiple or even on the result of computations based on a set of credentials. A common example is a presentation proof that a subject is legally permitted to take driving lessons. This is a binary attribute the result of a computation involving knowledge of both the biological age of the subject as well as legal restrictions that apply to the jurisdiction where the verifier is operating.
+A digital identity credential (abbreviated as 'credential' in this document) is an object representing a set of claims associated with a subject. The credential MAY contain claims that uniquely identify a single subject. A digital identity credential is typically cryptographically bound both to the issuer and to the mediator where it is stored. A presentation proof (abbreviated as 'presentation' in this document) is a proof that a particular issuer has provided a particular set of credentials to the mediator. A presentation can be verified by at least one verifier. A presentation proof can be based on data present in a single credential or in multiple or even on the result of computations based on a set of credentials. A common example is a presentation proof that a subject is legally permitted to take driving lessons. This is a binary attribute which is the result of a computation involving knowledge of both the biological age of the subject as well as legal restrictions that apply to the jurisdiction where the verifier is operating.
 
 ## Issuer and Verifier
 
@@ -349,7 +349,7 @@ end
 
 The mediator (acting on behalf of the subject) requests a credential from the issuer. The way this flow is initiated is implementation dependent and in some cases (notably in {{OIDC4VCI}}) the flow often starts with the subject visiting a web page at the issuer where the subject is first authenticated and then presented with means to launch a credential issuance request using their mediator. These details are left out from the diagram above.
 
-The credential is generated by the issuer presumably based on information the issuer has about the data subject but exactly how the credential is generated is implementation dependent and out of scope for this specification. The claims in the credential typically comes from some source with which the issuer has a trust relationship. The term "authentic source" is sometimes used when there is a need to distinguish the source of the claims in a credential from the source of the credential which by definition is the issuer.
+The credential is generated by the issuer presumably based on information the issuer has about the credential subject but exactly how the credential is generated is implementation dependent and out of scope for this specification. The claims in the credential typically comes from some source with which the issuer has a trust relationship. The term "authentic source" is sometimes used when there is a need to distinguish the source of the claims in a credential from the source of the credential which by definition is the issuer.
 
 The mediator receives a credential from the issuer. The credential is bound both to the mediator and to the issuer in such a way that presentation proofs generated from the credential can be used to verify said bindings.
 
@@ -359,9 +359,9 @@ Upon receipt of the presentation the verifier verifies the issuer and mediator b
 
 ## Delegated or Assisted Presentation Flow
 
-Delegated flows occur when a third party, such as an enterprise or legal representative, is authorized to present credentials on behalf of the data subject. The presentation mediator ensures that delegation is properly scoped and authorized, preventing misuse.
+Delegated flows occur when a third party, such as an enterprise or legal representative, is authorized to present credentials on behalf of the credential subject. The presentation mediator ensures that delegation is properly scoped and authorized, preventing misuse.
 
-Assisted flows involve granting limited rights to a third party to act on behalf of the data subject. This may take the form of a secondary credential that grants access to the mediator for the purpose of generating and transmitting presentation proofs on behalf of the data subject.
+Assisted flows involve granting limited rights to a third party to act on behalf of the credential subject. This may take the form of a secondary credential that grants access to the mediator for the purpose of generating and transmitting presentation proofs on behalf of the credential subject.
 
 # Normative Requirements
 
@@ -369,13 +369,13 @@ Assisted flows involve granting limited rights to a third party to act on behalf
 
 The mediator SHOULD provide the subject with the means to control which data from a credential is used in a presentation proof.
 
-The mediator MUST NOT be able to generate a presentation proof without the participation and approval of the data subject.
+The mediator MUST NOT be able to generate a presentation proof without the participation and approval of the credential subject.
 
 ## Selective Disclosure
 
 A conformant implementation SHOULD identify a format for representing digital credentials that make it possible for the subject to select a subset of the data present in the credential for inclusion in a presentation proof.
 
-Note that there are situations where selective disclosure isn't applicable, for instance when the data subject is legally compelled to present a credential. Exactly when selective disclosure is available as an option and what aspects of the credential is meaningful to select is an implementation issue and out of scope.
+Note that there are situations where selective disclosure isn't applicable, for instance when the credential subject is legally compelled to present a credential. Exactly when selective disclosure is available as an option and what aspects of the credential is meaningful to select is an implementation issue and out of scope.
 
 ## Issuer Binding
 
