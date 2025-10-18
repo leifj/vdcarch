@@ -5,10 +5,10 @@
 Network Working Group                                       L. Johansson
 Internet-Draft                                                     Sunet
 Intended status: Informational                                 B. Zundel
-Expires: 10 April 2026                                      Tradeverifyd
+Expires: 21 April 2026                                      Tradeverifyd
                                                              T. Cappalli
                                                                     Okta
-                                                          7 October 2025
+                                                         18 October 2025
 
 
    A reference architecture for direct presentation credential flows
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 April 2026.
+   This Internet-Draft will expire on 21 April 2026.
 
 Copyright Notice
 
@@ -211,7 +211,7 @@ Table of Contents
    do.  Digital identity can be thought of as a generalization of the
    concept of a user identifier in a protocol.  Today we typically use
    the term credential subject (abbreviated as 'subject' when there is
-   no risk of confusion) to denote the actor whoese data is beeing acted
+   no risk of confusion) to denote the actor whoese data is being acted
    upon by the protocol.  Most internet protocols represent the
    credential subject as a "user" identified by a single unique
    identifier.  Identifier in use by Internet protocols were typically
@@ -565,10 +565,9 @@ Table of Contents
 
    Note that there are situations where selective disclosure isn't
    applicable, for instance when the credential subject is legally
-   complelled to present a credential.  Exactly when selective
-   disclosure is available as an option and what aspects of the
-   credential is meaningful to select is an implementation issue and out
-   of scope.
+   compelled to present a credential.  Exactly when selective disclosure
+   is available as an option and what aspects of the credential is
+   meaningful to select is an implementation issue and out of scope.
 
 7.3.  Issuer Binding
 
