@@ -166,7 +166,7 @@ To anchor this architecture, we define key terms:
 
 # A Note on History
 
-The origins of the notion of digital identity goes back to the mid 1990s. Historically, Internet protocols were designed to deal with authentication and (sometimes) authorization, i.e. the question of what entity is accessing the protocol and what they are allowed to do. Digital identity can be thought of as a generalization of the concept of a user identifier in a protocol. Today we typically use the term credential subject (abbreviated as 'subject' when there is no risk of confusion) to denote the actor whoese data is beeing acted upon by the protocol. Most internet protocols represent the credential subject as a "user" identified by a single unique identifier. Identifier in use by Internet protocols were typically never designed to be unified - each security protocol typically designed a separate structure of identifiers.
+The origins of the notion of digital identity goes back to the mid 1990s. Historically, Internet protocols were designed to deal with authentication and (sometimes) authorization, i.e. the question of what entity is accessing the protocol and what they are allowed to do. Digital identity can be thought of as a generalization of the concept of a user identifier in a protocol. Today we typically use the term credential subject (abbreviated as 'subject' when there is no risk of confusion) to denote the actor whoese data is being acted upon by the protocol. Most internet protocols represent the credential subject as a "user" identified by a single unique identifier. Identifier in use by Internet protocols were typically never designed to be unified - each security protocol typically designed a separate structure of identifiers.
 
 Identifier schemes such as kerberos principal names or X.509 distinguished names are often assumed to be unique across multiple protocol endpoints. This introduces linkability across multiple protocol endpoints. Historically this was never seen as an issue.
 
@@ -375,7 +375,7 @@ The mediator MUST NOT be able to generate a presentation proof without the parti
 
 A conformant implementation SHOULD identify a format for representing digital credentials that make it possible for the subject to select a subset of the data present in the credential for inclusion in a presentation proof.
 
-Note that there are situations where selective disclosure isn't applicable, for instance when the credential subject is legally complelled to present a credential. Exactly when selective disclosure is available as an option and what aspects of the credential is meaningful to select is an implementation issue and out of scope.
+Note that there are situations where selective disclosure isn't applicable, for instance when the credential subject is legally compelled to present a credential. Exactly when selective disclosure is available as an option and what aspects of the credential is meaningful to select is an implementation issue and out of scope.
 
 ## Issuer Binding
 
