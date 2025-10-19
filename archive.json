@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-14T00:31:27.920644+00:00",
+  "timestamp": "2025-10-19T00:36:53.695146+00:00",
   "repo": "leifj/vdcarch",
   "labels": [
     {
@@ -60,7 +60,7 @@
       "id": "I_kwDOKFiMhc5uj_O-",
       "title": "use the term \"claims\" instead of \"data\" to represent the \"stuff\" inside a credential",
       "url": "https://github.com/leifj/vdcarch/issues/1",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "leifj",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -69,8 +69,8 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-08-17T12:41:52Z",
-      "updatedAt": "2025-10-07T14:38:14Z",
-      "closedAt": null,
+      "updatedAt": "2025-10-18T01:24:53Z",
+      "closedAt": "2025-10-18T01:24:53Z",
       "comments": [
         {
           "author": "timcappalli",
@@ -604,19 +604,59 @@
       "labels": [],
       "body": "fixes #9 ",
       "createdAt": "2025-10-06T22:02:06Z",
-      "updatedAt": "2025-10-13T15:56:35Z",
+      "updatedAt": "2025-10-18T00:56:46Z",
       "baseRepository": "leifj/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "bbed106b843e72c8645253ba771d3075007f8504",
       "headRepository": "brentzundel/vdcarch",
       "headRefName": "vc-profile",
-      "headRefOid": "c0dc43386fbde4e8d2e606d566d9dd4c3a1c6096",
+      "headRefOid": "edec6ff3b0254e4af3bcef06898e3cf093148d3f",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKFiMhc7HyxfS",
+          "commit": {
+            "abbreviatedOid": "c0dc433"
+          },
+          "author": "timcappalli",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2025-10-17T20:37:06Z",
+          "updatedAt": "2025-10-17T20:38:57Z",
+          "comments": [
+            {
+              "originalPosition": 119,
+              "body": "```suggestion\r\nThe notion of \"Self Sovereign Identity\" (SSI) was first introduced in the blogpost [PathToSSI] by Christopher Allen. The concept initially relied heavily on the assumed dependency on blockchain technology. Recently there has been work to abstract the concepts of SSI away from a dependency on specific technical solutions and describe the key concepts of SSI independently of the use of blockchain, such as the work in {{VCDM2}}.\r\n```\r\n\r\ntypos",
+              "createdAt": "2025-10-17T20:37:07Z",
+              "updatedAt": "2025-10-17T20:38:57Z"
+            },
+            {
+              "originalPosition": 149,
+              "body": "```suggestion\r\nA mediator conforming to this profile is also essentially an OpenID Connect store-and-proove proxy with a user interface allowing the subject control over selective disclosure, with some additional benefits.\r\n```",
+              "createdAt": "2025-10-17T20:38:19Z",
+              "updatedAt": "2025-10-17T20:38:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKFiMhc7H0h8i",
+          "commit": {
+            "abbreviatedOid": "edec6ff"
+          },
+          "author": "timcappalli",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-18T00:56:46Z",
+          "updatedAt": "2025-10-18T00:56:46Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 19,
@@ -685,24 +725,26 @@
       "id": "PR_kwDOKFiMhc6shFV-",
       "title": "s/\"data subject\"/\"credential subject\" and s/data/claims",
       "url": "https://github.com/leifj/vdcarch/pull/20",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "timcappalli",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #1 ",
       "createdAt": "2025-10-07T15:08:51Z",
-      "updatedAt": "2025-10-07T20:25:08Z",
+      "updatedAt": "2025-10-18T01:25:02Z",
       "baseRepository": "leifj/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "bbed106b843e72c8645253ba771d3075007f8504",
       "headRepository": "leifj/vdcarch",
       "headRefName": "tc-swap-datasubject",
-      "headRefOid": "07ca63f7ffdf0ea2f6538d51db302cba923c6ab4",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "7179b3897d2d8f82e3a08f44d7711705665b8d42",
+      "closedAt": "2025-10-18T01:24:52Z",
+      "mergedAt": "2025-10-18T01:24:52Z",
+      "mergedBy": "timcappalli",
+      "mergeCommit": {
+        "oid": "7b571faed454d38f31b424112d4a9062db2c70ae"
+      },
       "comments": [],
       "reviews": [
         {
@@ -717,6 +759,32 @@
           "createdAt": "2025-10-07T19:28:16Z",
           "updatedAt": "2025-10-07T19:28:16Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOKFiMhc7H0h-X",
+          "commit": {
+            "abbreviatedOid": "07ca63f"
+          },
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Minor notes, otherwise lgtm",
+          "createdAt": "2025-10-18T00:57:06Z",
+          "updatedAt": "2025-10-18T01:00:17Z",
+          "comments": [
+            {
+              "originalPosition": 27,
+              "body": "```suggestion\r\nThe origins of the notion of digital identity goes back to the mid 1990s. Historically, Internet protocols were designed to deal with authentication and (sometimes) authorization, i.e. the question of what entity is accessing the protocol and what they are allowed to do. Digital identity can be thought of as a generalization of the concept of a user identifier in a protocol. Today we typically use the term credential subject (abbreviated as 'subject' when there is no risk of confusion) to denote the actor whoese data is being acted upon by the protocol. Most internet protocols represent the credential subject as a \"user\" identified by a single unique identifier. Identifier in use by Internet protocols were typically never designed to be unified - each security protocol typically designed a separate structure of identifiers.\r\n```",
+              "createdAt": "2025-10-18T00:57:06Z",
+              "updatedAt": "2025-10-18T01:00:18Z"
+            },
+            {
+              "originalPosition": 108,
+              "body": "```suggestion\r\nNote that there are situations where selective disclosure isn't applicable, for instance when the credential subject is legally compelled to present a credential. Exactly when selective disclosure is available as an option and what aspects of the credential is meaningful to select is an implementation issue and out of scope.\r\n```",
+              "createdAt": "2025-10-18T00:59:52Z",
+              "updatedAt": "2025-10-18T01:00:18Z"
+            }
+          ]
         }
       ]
     }
