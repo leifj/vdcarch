@@ -5,10 +5,10 @@
 Network Working Group                                       L. Johansson
 Internet-Draft                                                     Sunet
 Intended status: Informational                                 B. Zundel
-Expires: 21 April 2026                                      Tradeverifyd
+Expires: 22 April 2026                                      Tradeverifyd
                                                              T. Cappalli
                                                                     Okta
-                                                         18 October 2025
+                                                         19 October 2025
 
 
    A reference architecture for direct presentation credential flows
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 April 2026.
+   This Internet-Draft will expire on 22 April 2026.
 
 Copyright Notice
 
@@ -89,8 +89,9 @@ Table of Contents
      7.6.  Revocation
    8.  Profiles
      8.1.  OpenID and SD-JWT
-     8.2.  Anoncreds
-     8.3.  The EU Digital Identity Wallet
+     8.2.  The Basic Profile plus W3C Verifiable Credentials
+     8.3.  Anoncreds
+     8.4.  The EU Digital Identity Wallet
    9.  Security Considerations
    10. IANA Considerations
    11. References
@@ -323,7 +324,8 @@ Table of Contents
    relied heavily on the assumed dependency on blockchain technology.
    Recently there has been work to abstract the concepts of SSI away
    from a dependency on specific technical solutions and describe the
-   key concepts of SSI independently of the use of blockchain.
+   key concepts of SSI independently of the use of blockchain, such as
+   the work in [VCDM2].
 
    The purpose of this document is to create a reference architecture
    for some of the concepts involved in SSI in such a way that different
@@ -602,7 +604,7 @@ Table of Contents
 8.  Profiles
 
    Several profiles of this reference architecture exist.  We present
-   two below.
+   some below.
 
 8.1.  OpenID and SD-JWT
 
@@ -646,11 +648,66 @@ Table of Contents
       managed but as a minimal profile it illustrates the components
       necessary to make a direct presentation architecture work.
 
-8.2.  Anoncreds
+8.2.  The Basic Profile plus W3C Verifiable Credentials
+
+   An expansion of the minimal profile above:
+
+   1.  Digital credentials follow [VCDM2]
+
+   2.  These credentials are represented as SD-JWT objects [SDJWT]
+       following [VCJOSE]
+
+   3.  The issuer uses a [CID] to identify themselves and the keys they
+       used to sign the digital credential.
+
+   4.  The holder uses a [DID] such as [DIDKEY] to identify themselves.
+
+   5.  The issuer uses [TSL] or [BSL] to communicate credential status
+       changes.
+
+   6.  An issuer implements the OP side of [OIDC4VCI]
+
+   7.  A verifier implements RP side of [OIDC4VP]
+
+   8.  A mediator implements the RP side of [OIDC4VCI] and the OP side
+       of [OIDC4VP]
+
+   A mediator conforming to this profile is also essentially an OpenID
+   Connect store-and-proove proxy with a user interface allowing the
+   subject control over selective disclosure, with some additional
+   benefits.
+
+   This profile fulfills several of the requirements in the previous
+   section:
+
+   *  Selective disclosure is provided by the use of SD-JWT objects to
+      represent credential and presentation objects.
+
+   *  Issuer binding is provided by a combination of digital signatures
+      on SD-JWTs and OpenID connect authentication between the mediator
+      and issuer.
+
+   *  Mediator binding is provided by the use of a DID for the holder.
+
+   *  Non-linkability is provided by not reusing SD-JWTs from the issuer
+      for multiple presentations.  The mediator MAY obtain multiple
+      copies of the same SD-JWT credentials from the mediator at the
+      same time.  These can then be used to generate separate
+      presentation objects, never reusing the same SD-JWT credential for
+      separate verifiers.
+
+   *  Revocation and other changes to credential status are communicated
+      via status credentials.
+
+   *  It answers the question of trust by included a CID for issuer
+      identification, which also addresses some of the scalability
+      issues involved in managing the digital signature keys.
+
+8.3.  Anoncreds
 
    TODO: write about hyperledger & anoncreds
 
-8.3.  The EU Digital Identity Wallet
+8.4.  The EU Digital Identity Wallet
 
    The EU Digital Identity Wallet (EUDI Wallet) as defined by the
    architecture reference framework [ARF] is an evolving profile for a
@@ -675,6 +732,17 @@ Table of Contents
 11.  References
 
 11.1.  Normative References
+
+   [BSL]      Sporny, M., Longley, D., Prorock, M., and M. Alkhraishi,
+              "Bitstring Status List v1.0", n.d.,
+              <https://www.w3.org/TR/vc-bitstring-status-list/>.
+
+   [CID]      Sporny, M. and M. B. Jones, "Controlled Identifiers v1.0",
+              n.d., <https://www.w3.org/TR/cid-1.0/>.
+
+   [DID]      Sporny, M., Guy, A., Sabadello, M., and D. Reed,
+              "Decentralized Identifiers (DIDs) v1.0", n.d.,
+              <https://www.w3.org/TR/did-1.0/>.
 
    [OIDC4VCI] Lodderstedt, T., Yasuda, K., and T. Looker, "OpenID for
               Verifiable Credential Issuance", n.d.,
@@ -701,12 +769,24 @@ Table of Contents
               May 2025, <https://datatracker.ietf.org/doc/html/draft-
               ietf-oauth-selective-disclosure-jwt-22>.
 
+   [VCDM2]    Sporny, M., Thibodeau, T., Herman, I., Cohen, C., and M.
+              B. Jones, "Verifiable Credentials Data Model v2.0", n.d.,
+              <https://www.w3.org/TR/vc-data-model-2.0/>.
+
+   [VCJOSE]   Prorock, M., Cohen, C., and M. B. Jones, "Securing
+              Verifiable Credentials using JOSE and COSE", n.d.,
+              <https://www.w3.org/TR/vc-jose-cose/>.
+
 11.2.  Informative References
 
    [ARF]      COM, "The European Digital identity Wallet architecture
               and Reference framework", n.d., <https://digital-
               strategy.ec.europa.eu/en/library/european-digital-
               identity-wallet-architecture-and-reference-framework>.
+
+   [DIDKEY]   Longley, D., Zagidulin, D., and M. Sporny, "The did:key
+              Method v0.7", n.d.,
+              <https://w3c-ccg.github.io/did-key-spec/>.
 
    [OPENIDC]  Sakimura, N., Bradley, J., Jones, M., de Medeiros, B., and
               C. Mortimore, "OpenID Connect Core 1.0", 2014.
@@ -721,6 +801,10 @@ Table of Contents
               OASIS Committee Specification sstc-core, 31 May 2002,
               <http://www.oasis-open.org/committees/security/docs/cs-
               sstc-core-01.pdf>.
+
+   [TSL]      Looker, T., Bastian, P., and C. Bohrmann, "Token Status
+              List", n.d., <https://datatracker.ietf.org/doc/draft-ietf-
+              oauth-status-list/>.
 
 Acknowledgments
 
