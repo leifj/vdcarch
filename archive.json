@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-19T00:36:53.695146+00:00",
+  "timestamp": "2025-10-21T00:33:20.091571+00:00",
   "repo": "leifj/vdcarch",
   "labels": [
     {
@@ -264,7 +264,7 @@
       "id": "I_kwDOKFiMhc7IByvL",
       "title": "Add W3C VC Profile",
       "url": "https://github.com/leifj/vdcarch/issues/9",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "brentzundel",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -273,8 +273,8 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-08-26T14:32:35Z",
-      "updatedAt": "2025-08-26T14:32:39Z",
-      "closedAt": null,
+      "updatedAt": "2025-10-19T21:18:54Z",
+      "closedAt": "2025-10-19T21:18:54Z",
       "comments": []
     },
     {
@@ -597,24 +597,26 @@
       "id": "PR_kwDOKFiMhc6sYTSx",
       "title": "Add profile with VCDM",
       "url": "https://github.com/leifj/vdcarch/pull/17",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "brentzundel",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "fixes #9 ",
       "createdAt": "2025-10-06T22:02:06Z",
-      "updatedAt": "2025-10-18T00:56:46Z",
+      "updatedAt": "2025-10-19T21:18:53Z",
       "baseRepository": "leifj/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "bbed106b843e72c8645253ba771d3075007f8504",
       "headRepository": "brentzundel/vdcarch",
       "headRefName": "vc-profile",
       "headRefOid": "edec6ff3b0254e4af3bcef06898e3cf093148d3f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-10-19T21:18:53Z",
+      "mergedAt": "2025-10-19T21:18:53Z",
+      "mergedBy": "brentzundel",
+      "mergeCommit": {
+        "oid": "248ca0ace7fa9de8023d1bc22880c5c4326448de"
+      },
       "comments": [],
       "reviews": [
         {
