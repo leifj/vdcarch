@@ -1,6 +1,6 @@
 ---
 title: A Reference Architecture for Verifiable Digital Credentials in the Issuer, Holder, Verifier Model
-abbrev: Verifiable Digital Credentials
+abbrev: Architecture for Verifiable Digital Credentials
 docname: draft-ietf-spice-vdcarch-latest
 category: info
 stream: IETF
