@@ -1,5 +1,5 @@
 ---
-title: A reference architecture for direct presentation credential flows
+title: A Reference Architecture for Verifiable Digital Credentials in the Issuer, Holder, Verifier Model
 abbrev: Verifiable Digital Credentials
 docname: draft-ietf-spice-vdcarch-latest
 category: info
@@ -19,8 +19,8 @@ author:
   -
      ins: L. Johansson
      name: Leif Johansson
-     organization: Sunet
-     email: leifj@sunet.se
+     organization: SIROS Foundation
+     email: leifj@siros.org
      country: Sweden
   -
      ins: B. Zundel

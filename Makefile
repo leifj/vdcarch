@@ -1,6 +1,6 @@
 LIBDIR := lib
 
-export UPLOAD_EMAIL ?= leifj@sunet.se
+export UPLOAD_EMAIL ?= leifj@mnt.se
 
 include $(LIBDIR)/main.mk
 
