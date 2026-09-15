@@ -1534,70 +1534,158 @@ and assisted presentations.<a href="#section-5-1" class="pilcrow">¶</a></p>
         <h3 id="name-direct-presentation-flow">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-direct-presentation-flow" class="section-name selfRef">Direct Presentation Flow</a>
         </h3>
-<p id="section-5.1-1">The basic direct presentation flows looks like this:<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-ascii-art art-text artwork" id="section-5.1-2">
-<pre>
-                    ┌───────┐                       ┌────────┐                                              ┌──────┐                            ┌────────┐           ┌─────────┐
-                    │Subject│                       │Mediator│                                              │Issuer│                            │Verifier│           │Presenter│
-                    └───┬───┘                       └────┬───┘                                              └───┬──┘                            └────┬───┘           └────┬────┘
-                        │                                │                                                      │                                    │                    │
-          ╔═══════════╤═╪════════════════════════════════╪══════════════════════════════════════════════════════╪════════════════════════════════════╪══╗                 │
-          ║ ISSUANCE  │ │                                │                                                      │                                    │  ║                 │
-          ╟───────────┘ &lt;&lt;initiate credential request&gt;&gt; ┌┴┐                                                     │                                    │  ║                 │
-          ║             │ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ &gt; │ │                                                     │                                    │  ║                 │
-          ║             │                               │ │                                                     │                                    │  ║                 │
-          ║             │                               │ │                 request credential                 ┌┴┐                                   │  ║                 │
-          ║             │                               │ │  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─&gt;│ │                                   │  ║                 │
-          ║             │                               │ │                                                    │ │                                   │  ║                 │
-          ║             │                               │ │                                                    │ │ ─ ─ ┐                             │  ║                 │
-          ║             │                               │ │                                                    │ │     | &lt;&lt;generate credential&gt;&gt;     │  ║                 │
-          ║             │                               │ │                                                    │ │ &lt; ─ ┘                             │  ║                 │
-          ║             │                               └┬┘                                                    └┬┘                                   │  ║                 │
-          ║             │                                │                     credential                       │                                    │  ║                 │
-          ║             │                                │&lt;─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─│                                    │  ║                 │
-          ╚═════════════╪════════════════════════════════╪══════════════════════════════════════════════════════╪════════════════════════════════════╪══╝                 │
-                        │                                │                                                      │                                    │                    │
-                        │                                │                                                      │                                    │                    │
-                        │                 ╔══════════════╪╤═════════════════════════════════════════════════════╪════════════════════════════════════╪════════════════════╪══════════════╗
-                        │                 ║ VERIFICATION  │                                                     │                                    │                    │              ║
-                        │                 ╟───────────────┘                                   request presentation                                   │                    │              ║
-                        │                 ║             │ │ &lt;─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ │                    │              ║
-                        │                 ║             │ │                                                     │                                    │                    │              ║
-                        │                 ║             │ │                                      &lt;&lt;prompt to select credential(s)&gt;&gt;                  │                   ┌┴┐             ║
-                        │                 ║             │ │  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─&gt;│ │             ║
-                        │                 ║             │ │                                                     │                                    │                   └┬┘             ║
-                        │                 ║             │ │                                     &lt;&lt;select claims from credential(s)&gt;&gt;                 │                    │              ║
-                        │                 ║             │ │ &lt;─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─│              ║
-                        │                 ║             │ │                                                     │                                    │                    │              ║
-                        │                 ║             │ │ ─ ─ ┐                                               │                                    │                    │              ║
-                        │                 ║             │ │     | &lt;&lt;generate presentation proof selection&gt;&gt;     │                                    │                    │              ║
-                        │                 ║             │ │ &lt; ─ ┘                                               │                                    │                    │              ║
-                        │                 ║             └┬┘                                                     │                                    │                    │              ║
-                        │                 ║              │                                    presentation proof│                                    │                    │              ║
-                        │                 ║              │ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─&gt;│                    │              ║
-                        │                 ╚══════════════╪══════════════════════════════════════════════════════╪════════════════════════════════════╪════════════════════╪══════════════╝
-                    ┌───┴───┐                       ┌────┴───┐                                              ┌───┴──┐                            ┌────┴───┐           ┌────┴────┐
-                    │Subject│                       │Mediator│                                              │Issuer│                            │Verifier│           │Presenter│
-                    └───────┘                       └────────┘                                              └──────┘                            └────────┘           └─────────┘
-</pre><a href="#section-5.1-2" class="pilcrow">¶</a>
+<span id="name-basic-verifiable-cigital-cr"></span><div id="fig-basic-flow">
+<figure id="figure-1">
+          <div id="section-5.1-1.1">
+            <div class="alignLeft art-svg artwork" id="section-5.1-1.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="720" width="1424" viewBox="0 0 1424 720" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,96 L 8,320" fill="none" stroke="black"></path>
+                <path d="M 88,32 L 88,64" fill="none" stroke="black"></path>
+                <path d="M 88,656 L 88,688" fill="none" stroke="black"></path>
+                <path d="M 104,96 L 104,128" fill="none" stroke="black"></path>
+                <path d="M 120,64 L 120,656" fill="none" stroke="black"></path>
+                <path d="M 152,32 L 152,64" fill="none" stroke="black"></path>
+                <path d="M 152,656 L 152,688" fill="none" stroke="black"></path>
+                <path d="M 248,368 L 248,640" fill="none" stroke="black"></path>
+                <path d="M 352,32 L 352,64" fill="none" stroke="black"></path>
+                <path d="M 352,656 L 352,688" fill="none" stroke="black"></path>
+                <path d="M 376,368 L 376,400" fill="none" stroke="black"></path>
+                <path d="M 392,64 L 392,656" fill="none" stroke="black"></path>
+                <path d="M 424,32 L 424,64" fill="none" stroke="black"></path>
+                <path d="M 424,656 L 424,688" fill="none" stroke="black"></path>
+                <path d="M 440,544 L 440,576" fill="none" stroke="black"></path>
+                <path d="M 800,32 L 800,64" fill="none" stroke="black"></path>
+                <path d="M 800,656 L 800,688" fill="none" stroke="black"></path>
+                <path d="M 832,64 L 832,408" fill="none" stroke="black"></path>
+                <path d="M 832,424 L 832,456" fill="none" stroke="black"></path>
+                <path d="M 832,472 L 832,504" fill="none" stroke="black"></path>
+                <path d="M 832,520 L 832,616" fill="none" stroke="black"></path>
+                <path d="M 832,640 L 832,656" fill="none" stroke="black"></path>
+                <path d="M 856,32 L 856,64" fill="none" stroke="black"></path>
+                <path d="M 856,656 L 856,688" fill="none" stroke="black"></path>
+                <path d="M 888,224 L 888,256" fill="none" stroke="black"></path>
+                <path d="M 1088,32 L 1088,64" fill="none" stroke="black"></path>
+                <path d="M 1088,656 L 1088,688" fill="none" stroke="black"></path>
+                <path d="M 1128,64 L 1128,456" fill="none" stroke="black"></path>
+                <path d="M 1128,472 L 1128,504" fill="none" stroke="black"></path>
+                <path d="M 1128,520 L 1128,656" fill="none" stroke="black"></path>
+                <path d="M 1152,96 L 1152,320" fill="none" stroke="black"></path>
+                <path d="M 1160,32 L 1160,64" fill="none" stroke="black"></path>
+                <path d="M 1160,656 L 1160,688" fill="none" stroke="black"></path>
+                <path d="M 1256,32 L 1256,64" fill="none" stroke="black"></path>
+                <path d="M 1256,656 L 1256,688" fill="none" stroke="black"></path>
+                <path d="M 1296,64 L 1296,656" fill="none" stroke="black"></path>
+                <path d="M 1336,32 L 1336,64" fill="none" stroke="black"></path>
+                <path d="M 1336,656 L 1336,688" fill="none" stroke="black"></path>
+                <path d="M 1416,368 L 1416,640" fill="none" stroke="black"></path>
+                <path d="M 88,32 L 152,32" fill="none" stroke="black"></path>
+                <path d="M 352,32 L 424,32" fill="none" stroke="black"></path>
+                <path d="M 800,32 L 856,32" fill="none" stroke="black"></path>
+                <path d="M 1088,32 L 1160,32" fill="none" stroke="black"></path>
+                <path d="M 1256,32 L 1336,32" fill="none" stroke="black"></path>
+                <path d="M 88,64 L 152,64" fill="none" stroke="black"></path>
+                <path d="M 352,64 L 424,64" fill="none" stroke="black"></path>
+                <path d="M 800,64 L 856,64" fill="none" stroke="black"></path>
+                <path d="M 1088,64 L 1160,64" fill="none" stroke="black"></path>
+                <path d="M 1256,64 L 1336,64" fill="none" stroke="black"></path>
+                <path d="M 8,96 L 1152,96" fill="none" stroke="black"></path>
+                <path d="M 8,128 L 104,128" fill="none" stroke="black"></path>
+                <path d="M 120,144 L 384,144" fill="none" stroke="black"></path>
+                <path d="M 392,192 L 824,192" fill="none" stroke="black"></path>
+                <path d="M 832,224 L 888,224" fill="none" stroke="black"></path>
+                <path d="M 840,256 L 888,256" fill="none" stroke="black"></path>
+                <path d="M 400,304 L 832,304" fill="none" stroke="black"></path>
+                <path d="M 8,320 L 1152,320" fill="none" stroke="black"></path>
+                <path d="M 248,368 L 1416,368" fill="none" stroke="black"></path>
+                <path d="M 248,400 L 376,400" fill="none" stroke="black"></path>
+                <path d="M 400,416 L 1128,416" fill="none" stroke="black"></path>
+                <path d="M 392,464 L 1288,464" fill="none" stroke="black"></path>
+                <path d="M 400,512 L 1296,512" fill="none" stroke="black"></path>
+                <path d="M 392,544 L 440,544" fill="none" stroke="black"></path>
+                <path d="M 400,576 L 440,576" fill="none" stroke="black"></path>
+                <path d="M 392,624 L 1120,624" fill="none" stroke="black"></path>
+                <path d="M 248,640 L 1416,640" fill="none" stroke="black"></path>
+                <path d="M 88,656 L 152,656" fill="none" stroke="black"></path>
+                <path d="M 352,656 L 424,656" fill="none" stroke="black"></path>
+                <path d="M 800,656 L 856,656" fill="none" stroke="black"></path>
+                <path d="M 1088,656 L 1160,656" fill="none" stroke="black"></path>
+                <path d="M 1256,656 L 1336,656" fill="none" stroke="black"></path>
+                <path d="M 88,688 L 152,688" fill="none" stroke="black"></path>
+                <path d="M 352,688 L 424,688" fill="none" stroke="black"></path>
+                <path d="M 800,688 L 856,688" fill="none" stroke="black"></path>
+                <path d="M 1088,688 L 1160,688" fill="none" stroke="black"></path>
+                <path d="M 1256,688 L 1336,688" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="1296,464 1284,458.4 1284,469.6" fill="black" transform="rotate(0,1288,464)"></polygon>
+                <polygon class="arrowhead" points="1128,624 1116,618.4 1116,629.6" fill="black" transform="rotate(0,1120,624)"></polygon>
+                <polygon class="arrowhead" points="848,256 836,250.4 836,261.6" fill="black" transform="rotate(180,840,256)"></polygon>
+                <polygon class="arrowhead" points="832,192 820,186.4 820,197.6" fill="black" transform="rotate(0,824,192)"></polygon>
+                <polygon class="arrowhead" points="408,576 396,570.4 396,581.6" fill="black" transform="rotate(180,400,576)"></polygon>
+                <polygon class="arrowhead" points="408,512 396,506.4 396,517.6" fill="black" transform="rotate(180,400,512)"></polygon>
+                <polygon class="arrowhead" points="408,416 396,410.4 396,421.6" fill="black" transform="rotate(180,400,416)"></polygon>
+                <polygon class="arrowhead" points="408,304 396,298.4 396,309.6" fill="black" transform="rotate(180,400,304)"></polygon>
+                <polygon class="arrowhead" points="392,144 380,138.4 380,149.6" fill="black" transform="rotate(0,384,144)"></polygon>
+                <g class="text">
+                  <text x="120" y="52">Subject</text>
+                  <text x="388" y="52">Mediator</text>
+                  <text x="828" y="52">Issuer</text>
+                  <text x="1124" y="52">Verifier</text>
+                  <text x="1296" y="52">Presenter</text>
+                  <text x="52" y="116">ISSUANCE</text>
+                  <text x="164" y="132">&lt;&lt;initiate</text>
+                  <text x="252" y="132">credential</text>
+                  <text x="336" y="132">request&gt;&gt;</text>
+                  <text x="568" y="180">request</text>
+                  <text x="644" y="180">credential</text>
+                  <text x="940" y="244">&lt;&lt;generate</text>
+                  <text x="1036" y="244">credential&gt;&gt;</text>
+                  <text x="604" y="292">credential</text>
+                  <text x="308" y="388">VERIFICATION</text>
+                  <text x="960" y="404">request</text>
+                  <text x="1044" y="404">presentation</text>
+                  <text x="532" y="452">&lt;&lt;prompt</text>
+                  <text x="580" y="452">to</text>
+                  <text x="620" y="452">select</text>
+                  <text x="712" y="452">credential(s)&gt;&gt;</text>
+                  <text x="524" y="500">&lt;&lt;select</text>
+                  <text x="588" y="500">claims</text>
+                  <text x="636" y="500">from</text>
+                  <text x="720" y="500">credential(s)&gt;&gt;</text>
+                  <text x="484" y="564">&lt;&lt;generate</text>
+                  <text x="580" y="564">presentation</text>
+                  <text x="656" y="564">proof</text>
+                  <text x="728" y="564">selection&gt;&gt;</text>
+                  <text x="716" y="612">presentation</text>
+                  <text x="792" y="612">proof</text>
+                  <text x="120" y="676">Subject</text>
+                  <text x="388" y="676">Mediator</text>
+                  <text x="828" y="676">Issuer</text>
+                  <text x="1124" y="676">Verifier</text>
+                  <text x="1296" y="676">Presenter</text>
+                </g>
+              </svg><a href="#section-5.1-1.1.1" class="pilcrow">¶</a>
 </div>
-<p id="section-5.1-3">The mediator (acting on behalf of the subject) requests a credential from the
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-basic-verifiable-cigital-cr" class="selfRef">Basic Verifiable Cigital Credential Flow</a>
+          </figcaption></figure>
+</div>
+<p id="section-5.1-2">The mediator (acting on behalf of the subject) requests a credential from the
 issuer. The way this flow is initiated is implementation dependent and in some
 cases (notably in <span>[<a href="#OIDC4VCI" class="cite xref">OIDC4VCI</a>]</span>) the flow often starts with the subject visiting
 a web page at the issuer where the subject is first authenticated and then
 presented with means to launch a credential issuance request using their
-mediator. These details are left out from the diagram above.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
-<p id="section-5.1-4">The credential is generated by the issuer presumably based on information the
+mediator. These details are left out from the diagram above.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">The credential is generated by the issuer presumably based on information the
 issuer has about the credential subject but exactly how the credential is
 generated is implementation dependent and out of scope for this specification.
 The claims in the credential typically comes from some source with which the
 issuer has a trust relationship. The term "authentic source" is sometimes used
 when there is a need to distinguish the source of the claims in a credential
-from the source of the credential which by definition is the issuer.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
-<p id="section-5.1-5">The mediator receives a credential from the issuer. The credential is bound both
+from the source of the credential which by definition is the issuer.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-4">The mediator receives a credential from the issuer. The credential is bound both
 to the mediator and to the issuer in such a way that presentation proofs
-generated from the credential can be used to verify said bindings.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
-<p id="section-5.1-6">At some later point, the subject wants to use the credentials in their mediator
+generated from the credential can be used to verify said bindings.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+<p id="section-5.1-5">At some later point, the subject wants to use the credentials in their mediator
 to provide identity data to an application. The application has a verifier (a
 specific software component responsible for verifying presentation proofs)
 associated with it. The mediator - often after involving the user in some form
@@ -1607,11 +1695,11 @@ verifier. The precise way this flow is initiated is again implementation
 dependent and in some cases (notably <span>[<a href="#OIDC4VP" class="cite xref">OIDC4VP</a>]</span>) the flow starts with the
 subject visiting the application and hitting a "login" button which directs the
 users device to launch the mediator to complete the flow. These details are left
-out of the diagram above.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
-<p id="section-5.1-7">Upon receipt of the presentation the verifier verifies the issuer and mediator
+out of the diagram above.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
+<p id="section-5.1-6">Upon receipt of the presentation the verifier verifies the issuer and mediator
 binding (aka holder binding) of the proof and - if the implementation supports
 revocation - the current validity of the underlying credential(s). If successful
-the data in the proof is made available to the application.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
+the data in the proof is made available to the application.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="delegated-or-assisted-presentation-flow">
