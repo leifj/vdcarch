@@ -5,13 +5,14 @@
 Network Working Group                                       L. Johansson
 Internet-Draft                                          SIROS Foundation
 Intended status: Informational                                 B. Zundel
-Expires: 23 January 2027                                          Yubico
+Expires: 19 March 2027                                            Yubico
                                                              T. Cappalli
                                                                     Okta
-                                                            22 July 2026
+                                                       15 September 2026
 
 
-   A reference architecture for direct presentation credential flows
+   A Reference Architecture for Verifiable Digital Credentials in the
+                     Issuer, Holder, Verifier Model
                     draft-ietf-spice-vdcarch-latest
 
 Abstract
@@ -45,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 January 2027.
+   This Internet-Draft will expire on 19 March 2027.
 
 Copyright Notice
 
