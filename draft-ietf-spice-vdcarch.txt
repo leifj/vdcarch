@@ -8,6 +8,8 @@ Intended status: Informational                                 B. Zundel
 Expires: 19 March 2027                                            Yubico
                                                              T. Cappalli
                                                                     Okta
+                                                             H. Birkholz
+                                                         Frauenhofer SET
                                                        15 September 2026
 
 
@@ -700,3 +702,9 @@ Authors' Addresses
    Okta
    United States
    Email: timcappalli@cloudauth.dev
+
+
+   Henk Birkholz
+   Frauenhofer SET
+   Germany
+   Email: henk.birkholz@sit.fraunhofer.de
