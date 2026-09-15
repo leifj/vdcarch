@@ -34,6 +34,12 @@ author:
      organization: Okta
      email: timcappalli@cloudauth.dev
      country: United States
+  -
+     ins: H. Birkholz
+     name: Henk Birkholz
+     organization: Frauenhofer SET
+     email: henk.birkholz@sit.fraunhofer.de
+     country: Germany
 
 informative:
   DIDKEY:
