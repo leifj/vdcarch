@@ -1,17 +1,8 @@
 LIBDIR := lib
 
-export UPLOAD_EMAIL ?= leifj@sunet.se
-
-plantuml-dep ?= .plantuml.dep
-DEPS_FILES += $(plantuml-dep)
+export UPLOAD_EMAIL ?= leifj@mnt.se
 
 include $(LIBDIR)/main.mk
-
-$(plantuml-dep):
-ifeq (true,$(CI))
-	@apk add --no-cache plantuml
-endif
-	@touch $@
 
 
 $(LIBDIR)/main.mk:
